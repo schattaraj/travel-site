@@ -1,0 +1,1370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Experience – Calcutta & Beyond</title>
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <!-- AOS (Animate On Scroll) -->
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet"/>
+  <!-- Swiper (mobile carousel) -->
+  <link href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" rel="stylesheet"/>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
+
+  <style>
+    /* ═══════════════════════════════════════════
+       TOKENS
+    ═══════════════════════════════════════════ */
+    :root {
+      --orange:      #C8622A;
+      --orange-lt:   #D97A42;
+      --orange-pale: #F2E8DF;
+      --cream:       #F5F0EA;
+      --sage:        #9FAF94;
+      --sage-bg:     #A8BA9D;
+      --dark:        #1A1409;
+      --mid:         #4A4A4A;
+      --light:       #8A8A8A;
+      --white:       #FFFFFF;
+      --font-display: 'Playfair Display', serif;
+      --font-body:    'Lato', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      color: var(--dark);
+      background: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* ═══════════════════════════════════════════
+       TYPOGRAPHY HELPERS
+    ═══════════════════════════════════════════ */
+    .font-display   { font-family: var(--font-display); }
+    .eyebrow {
+      font-size: .7rem; font-weight: 700;
+      letter-spacing: .18em; text-transform: uppercase;
+      color: var(--orange); display: block; margin-bottom: .75rem;
+    }
+    .eyebrow::before {
+      content: ''; display: inline-block;
+      width: 24px; height: 1px;
+      background: var(--orange);
+      vertical-align: middle; margin-right: 10px;
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      font-weight: 600; line-height: 1.18; color: var(--dark);
+    }
+    .section-sub {
+      font-size: .97rem; line-height: 1.85; color: var(--mid);
+    }
+    .text-orange { color: var(--orange) !important; }
+    .bg-cream     { background: var(--cream) !important; }
+    .bg-dark-warm { background: var(--dark) !important; }
+    .bg-sage      { background: var(--sage-bg) !important; }
+
+    /* ═══════════════════════════════════════════
+       BUTTONS
+    ═══════════════════════════════════════════ */
+    .btn-cb-primary {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: var(--orange); color: var(--white);
+      font-size: .75rem; font-weight: 700; letter-spacing: .08em;
+      text-transform: uppercase; padding: .85rem 1.75rem;
+      border: none; text-decoration: none;
+      transition: background .25s, transform .25s;
+    }
+    .btn-cb-primary:hover { background: var(--orange-lt); color: var(--white); transform: translateY(-2px); }
+    .btn-cb-primary svg { transition: transform .25s; }
+    .btn-cb-primary:hover svg { transform: translateX(4px); }
+
+    .btn-cb-outline {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: transparent; color: var(--white);
+      font-size: .75rem; font-weight: 700; letter-spacing: .08em;
+      text-transform: uppercase; padding: .85rem 1.75rem;
+      border: 1.5px solid rgba(255,255,255,.45);
+      text-decoration: none; transition: border-color .25s, background .25s;
+    }
+    .btn-cb-outline:hover { border-color: var(--white); background: rgba(255,255,255,.07); color: var(--white); }
+
+    /* ═══════════════════════════════════════════
+       NAVBAR
+    ═══════════════════════════════════════════ */
+    #mainNav {
+      background: rgba(255,255,255,.97) !important;
+      box-shadow: 0 2px 24px rgba(0,0,0,.07);
+      padding: .9rem 0;
+      transition: padding .3s;
+    }
+    #mainNav.scrolled { padding: .5rem 0; }
+    .navbar-brand-mark {
+      width: 40px; height: 40px; border-radius: 50%;
+      border: 2px solid var(--orange);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-display); color: var(--orange);
+      font-size: 15px; font-weight: 700; flex-shrink: 0;
+    }
+    .navbar-brand-text {
+      font-family: var(--font-display); font-size: 15px; color: var(--dark); line-height: 1.2;
+    }
+    .navbar-brand-text span { color: var(--orange); }
+    .nav-link {
+      font-size: .82rem; font-weight: 700; letter-spacing: .04em;
+      color: var(--mid) !important; transition: color .2s;
+      padding: .5rem .9rem !important;
+    }
+    .nav-link:hover, .nav-link.active { color: var(--orange) !important; }
+    .navbar-toggler { border: 1.5px solid var(--orange); }
+    .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%23C8622A' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    }
+#mainNav .navbar-brand img { 
+  height: 60px; width: auto; object-fit: contain; margin-right: .75rem;
+}
+#mainNav .navbar-brand h4{
+  font-family: "Playfair", serif;
+  font-optical-sizing: auto;
+}
+    /* ═══════════════════════════════════════════
+       PAGE BANNER (Inner Page)
+    ═══════════════════════════════════════════ */
+    #hero {
+      min-height: 480px;
+      position: relative;
+      display: flex; align-items: center;
+      /* Swap gradient for: background-image: url('assets/img/banner-bg.jpg'); */
+      background: linear-gradient(135deg, #1e0e05 0%, #3a2010 35%, #5c3820 60%, #7a5030 100%);
+      background-size: cover; background-position: center;
+      overflow: hidden;
+      padding-top: 80px;
+    }
+    .hero-mesh {
+      position: absolute; inset: 0; pointer-events: none;
+      background:
+        radial-gradient(ellipse 800px 600px at 70% 55%, rgba(200,98,42,.2) 0%, transparent 60%),
+        radial-gradient(ellipse 500px 400px at 15% 75%, rgba(159,175,148,.08) 0%, transparent 55%);
+    }
+    .hero-pattern {
+      position: absolute; inset: 0; pointer-events: none; opacity: .04;
+      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E");
+    }
+    .hero-overlay {
+      position: absolute; inset: 0; pointer-events: none;
+      background: linear-gradient(160deg, rgba(20,10,2,.82) 0%, rgba(20,10,2,.55) 50%, rgba(20,10,2,.3) 100%);
+    }
+    /* Decorative corner arch (right side) */
+    .hero-deco {
+      position: absolute; right: 0; bottom: 0; top: 0;
+      width: 42%; pointer-events: none; overflow: hidden; opacity: .06;
+    }
+    .hero-deco::before {
+      content: '';
+      position: absolute; bottom: 0; right: 80px;
+      width: min(340px, 80%); height: 88%;
+      background: rgba(255,255,255,1);
+      clip-path: polygon(10% 100%, 0% 58%, 6% 52%, 6% 38%, 16% 33%, 16% 22%, 22% 16%, 28% 22%, 28% 33%, 38% 33%, 38% 22%, 44% 16%, 50% 22%, 50% 33%, 60% 33%, 60% 38%, 66% 52%, 72% 58%, 62% 100%);
+    }
+
+    /* Banner inner content */
+    .banner-inner { position: relative; z-index: 2; width: 100%; }
+    .banner-eyebrow {
+      font-size: .7rem; font-weight: 700; letter-spacing: .2em;
+      text-transform: uppercase; color: var(--orange-lt);
+      display: flex; align-items: center; justify-content: center; gap: .8rem;
+      margin-bottom: 1rem;
+    }
+    .banner-eyebrow::before,
+    .banner-eyebrow::after {
+      content: ''; width: 28px; height: 1px;
+      background: var(--orange-lt); flex-shrink: 0;
+    }
+    #hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4.5vw, 3.5rem);
+      font-weight: 600; line-height: 1.12; color: var(--white);
+      margin-bottom: 1rem;
+    }
+    #hero h1 em { font-style: italic; color: var(--orange-lt); }
+    .banner-divider {
+      display: block; width: 52px; height: 2px;
+      background: var(--orange); margin: 0 auto 1.25rem;
+    }
+
+    /* Breadcrumb */
+    .banner-breadcrumb .breadcrumb {
+      justify-content: center; margin: 0;
+      background: transparent; padding: 0;
+    }
+    .banner-breadcrumb .breadcrumb-item {
+      font-size: .76rem; font-weight: 600; letter-spacing: .04em;
+    }
+    .banner-breadcrumb .breadcrumb-item a {
+      color: rgba(255,255,255,.58); text-decoration: none;
+      transition: color .2s;
+    }
+    .banner-breadcrumb .breadcrumb-item a:hover { color: var(--orange-lt); }
+    .banner-breadcrumb .breadcrumb-item.active { color: var(--orange-lt); }
+    .banner-breadcrumb .breadcrumb-item + .breadcrumb-item::before {
+      content: '/'; color: rgba(255,255,255,.28); padding: 0 .55rem;
+    }
+
+    /* Stats strip (standalone below banner) */
+    .stats-strip {
+      background: var(--dark);
+      border-bottom: 3px solid var(--orange);
+    }
+    .hero-stat {
+      text-align: center;
+      padding: 1.6rem 1rem;
+      border-right: 1px solid rgba(255,255,255,.07);
+    }
+    .hero-stat:last-child { border-right: none; }
+    .hero-stat-num {
+      font-family: var(--font-display); font-size: clamp(1.8rem, 3vw, 2.5rem);
+      font-weight: 600; color: var(--white); line-height: 1;
+    }
+    .hero-stat-num span { color: var(--orange-lt); }
+    .hero-stat-lbl {
+      font-size: .68rem; font-weight: 700; letter-spacing: .13em;
+      text-transform: uppercase; color: rgba(255,255,255,.42); margin-top: .4rem;
+    }
+
+    /* ═══════════════════════════════════════════
+       SERVICES CARDS
+    ═══════════════════════════════════════════ */
+    #services { background: var(--white); }
+    .svc-card {
+      position: relative; overflow: hidden;
+      cursor: pointer; height: 420px;
+      transition: transform .35s;
+    }
+    .svc-card:hover { transform: translateY(-8px); }
+    .svc-thumb {
+      position: absolute; inset: 0;
+      transition: transform .55s;
+    }
+    .svc-card:hover .svc-thumb { transform: scale(1.06); }
+    .svc-thumb-solo    { background: linear-gradient(160deg,#8B7355 0%,#5C4A32 50%,#3D2E1A 100%); }
+    .svc-thumb-family  { background: linear-gradient(160deg,#6B8E5E 0%,#4A6B40 50%,#2E4A26 100%); }
+    .svc-thumb-wedding { background: linear-gradient(160deg,#C8A882 0%,#A07850 50%,#6B4E30 100%); }
+    .svc-thumb-local   { background: linear-gradient(160deg,#7B9BAA 0%,#5A7A8A 50%,#3A5A6A 100%); }
+    .svc-thumb-inner {
+      width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .svc-thumb-inner svg { opacity: .25; }
+    .svc-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(20,10,2,.92) 0%, rgba(20,10,2,.3) 50%, transparent 100%);
+    }
+    .svc-body {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 1.75rem 1.5rem;
+    }
+    .svc-tag {
+      font-size: .65rem; font-weight: 700; letter-spacing: .14em;
+      text-transform: uppercase; color: var(--orange-lt); display: block; margin-bottom: .5rem;
+    }
+    .svc-card h3 {
+      font-family: var(--font-display); font-size: 1.3rem;
+      font-weight: 600; color: var(--white); margin-bottom: .6rem; line-height: 1.25;
+    }
+    .svc-card p {
+      font-size: .82rem; line-height: 1.7; color: rgba(255,255,255,.68);
+      max-height: 0; overflow: hidden;
+      transition: max-height .4s ease, margin .4s;
+    }
+    .svc-card:hover p { max-height: 120px; }
+    .svc-more {
+      display: inline-flex; align-items: center; gap: .4rem;
+      font-size: .7rem; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--orange-lt);
+      text-decoration: none; margin-top: .75rem;
+      opacity: 0; transform: translateY(8px);
+      transition: opacity .3s, transform .3s;
+    }
+    .svc-card:hover .svc-more { opacity: 1; transform: translateY(0); }
+
+    /* ═══════════════════════════════════════════
+       FEATURE STRIP
+    ═══════════════════════════════════════════ */
+    #features { background: var(--orange); }
+    .feat-item {
+      text-align: center; padding: 2.5rem 1.5rem;
+      border-right: 1px solid rgba(255,255,255,.15);
+    }
+    .feat-item:last-child { border-right: none; }
+    @media(max-width:767px){ .feat-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,.15); } }
+    .feat-icon {
+      width: 54px; height: 54px; margin: 0 auto 1rem;
+      border: 1.5px solid rgba(255,255,255,.45); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .feat-icon svg { width: 22px; height: 22px; stroke: rgba(255,255,255,.9); stroke-width: 1.5; fill: none; }
+    #features h4 { font-family: var(--font-display); font-size: 1.1rem; color: var(--white); margin-bottom: .5rem; }
+    #features p  { font-size: .83rem; color: rgba(255,255,255,.78); line-height: 1.7; margin: 0; }
+
+    /* ═══════════════════════════════════════════
+       EXPERIENCE DETAIL
+    ═══════════════════════════════════════════ */
+    #experiences { background: var(--cream); }
+    .exp-photo-wrap {
+      position: relative; height: clamp(320px, 40vw, 500px);
+    }
+    .exp-photo-main {
+      position: absolute; top: 0; left: 0;
+      width: 75%; height: 80%;
+      object-fit: cover;
+    }
+    .exp-photo-main img{
+      width: 100%; height: 100%; object-fit: cover;
+    }
+    .exp-photo-accent {
+      position: absolute; bottom: 0; right: 0;
+      width: 52%; height: 54%;
+      object-fit: cover;
+      border: 5px solid var(--cream);
+      box-shadow: 0 16px 40px rgba(0,0,0,.14);
+    }
+    .exp-photo-accent img{
+      width: 100%; height: 100%; object-fit: cover;
+    }
+    /* gradient stand-ins */
+    .ph-rural-a  { background: linear-gradient(140deg,#7B9B6E,#3A5A30); }
+    .ph-rural-b  { background: linear-gradient(140deg,#C8A882,#6B4E30); }
+    .ph-heritage-a{ background: linear-gradient(140deg,#8B7355,#4A3020); }
+    .ph-heritage-b{ background: linear-gradient(140deg,#9BAA7B,#5A6A3A); }
+    .ph-local-a  { background: linear-gradient(140deg,#AA8B7B,#6A4535); }
+    .ph-local-b  { background: linear-gradient(140deg,#7B8BAA,#3A4A6A); }
+
+    .exp-label {
+      position: absolute; bottom: 1.5rem; left: 1.5rem; z-index: 2;
+      background: var(--orange); color: var(--white);
+      font-size: .65rem; font-weight: 700; letter-spacing: .12em;
+      text-transform: uppercase; padding: .45rem 1rem;
+    }
+    .exp-divider {
+      border: none; border-top: 1px solid rgba(0,0,0,.1); margin: 4rem 0;
+    }
+    .exp-list { list-style: none; padding: 0; margin: 1.5rem 0 2rem; }
+    .exp-list li {
+      display: flex; align-items: flex-start; gap: .9rem;
+      font-size: .88rem; line-height: 1.7; color: var(--mid);
+      padding: .75rem 0; border-bottom: 1px solid rgba(0,0,0,.07);
+    }
+    .exp-list li:last-child { border-bottom: none; }
+    .exp-list li::before {
+      content: ''; flex-shrink: 0; width: 20px; height: 20px; margin-top: 1px;
+      background: var(--orange) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E") center/11px no-repeat;
+      border-radius: 50%;
+    }
+
+    /* ═══════════════════════════════════════════
+       PROCESS
+    ═══════════════════════════════════════════ */
+    #process { background: var(--white); }
+    .process-line {
+      position: absolute; top: 40px; left: 0; right: 0; height: 1px;
+      background: linear-gradient(to right, var(--orange), var(--sage-bg), var(--orange));
+      z-index: 0;
+    }
+    @media(max-width:767px){ .process-line { display: none; } }
+    .process-wrap { position: relative; }
+    .step-circle {
+      width: 80px; height: 80px; border-radius: 50%;
+      border: 2px solid var(--orange);
+      background: var(--white);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1.25rem; position: relative; z-index: 1;
+      font-family: var(--font-display); font-size: 1.3rem; font-weight: 700;
+      color: var(--orange); box-shadow: 0 4px 20px rgba(200,98,42,.15);
+      transition: background .3s, color .3s;
+    }
+    .process-step:hover .step-circle { background: var(--orange); color: var(--white); }
+    .process-step h5 {
+      font-family: var(--font-display); font-size: 1rem;
+      font-weight: 600; color: var(--dark); margin-bottom: .5rem;
+    }
+    .process-step p { font-size: .82rem; line-height: 1.75; color: var(--light); margin: 0; }
+
+    /* ═══════════════════════════════════════════
+       ITINERARY
+    ═══════════════════════════════════════════ */
+    #itinerary { background: var(--dark); }
+    #itinerary .eyebrow { color: var(--orange-lt); }
+    #itinerary .eyebrow::before { background: var(--orange-lt); }
+    #itinerary .section-title { color: var(--white); }
+    #itinerary .section-sub   { color: rgba(255,255,255,.6); }
+
+    .itin-tabs .nav-link {
+      font-size: .72rem; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; color: rgba(255,255,255,.4) !important;
+      border-bottom: 2px solid transparent !important;
+      border-radius: 0; padding: .75rem 1.2rem !important;
+      background: transparent !important;
+    }
+    .itin-tabs .nav-link.active {
+      color: var(--orange-lt) !important;
+      border-bottom-color: var(--orange-lt) !important;
+    }
+    .itin-tabs { border-bottom: 1px solid rgba(255,255,255,.1) !important; }
+
+    .itin-card {
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.08);
+      padding: 2rem 1.75rem;
+      transition: border-color .3s, background .3s;
+      height: 100%;
+    }
+    .itin-card:hover {
+      border-color: rgba(200,98,42,.45);
+      background: rgba(200,98,42,.05);
+    }
+    .itin-day {
+      font-size: .68rem; font-weight: 700; letter-spacing: .16em;
+      text-transform: uppercase; color: var(--orange-lt); margin-bottom: .75rem;
+    }
+    .itin-card h4 {
+      font-family: var(--font-display); font-size: 1.15rem;
+      color: var(--white); margin-bottom: .9rem; line-height: 1.3;
+    }
+    .itin-card p  { font-size: .83rem; line-height: 1.8; color: rgba(255,255,255,.58); margin-bottom: 1.25rem; }
+    .itin-tag {
+      display: inline-block; font-size: .64rem; font-weight: 700;
+      letter-spacing: .08em; text-transform: uppercase;
+      color: rgba(255,255,255,.45);
+      padding: .3rem .75rem; border: 1px solid rgba(255,255,255,.14);
+      margin: 0 .35rem .35rem 0;
+    }
+
+    /* ═══════════════════════════════════════════
+       TESTIMONIALS
+    ═══════════════════════════════════════════ */
+    #testimonials { background: var(--cream); }
+    .testi-card {
+      background: var(--white); padding: 2.5rem 2rem;
+      position: relative; height: 100%;
+      box-shadow: 0 4px 28px rgba(0,0,0,.07);
+      transition: box-shadow .3s, transform .3s;
+    }
+    .testi-card:hover { box-shadow: 0 14px 48px rgba(0,0,0,.12); transform: translateY(-5px); }
+    .testi-card::before {
+      content: '\201C';
+      position: absolute; top: 1.2rem; right: 1.8rem;
+      font-family: var(--font-display); font-size: 5.5rem;
+      line-height: 1; color: var(--orange); opacity: .1; pointer-events: none;
+    }
+    .testi-stars { display: flex; gap: .3rem; margin-bottom: 1.1rem; }
+    .star-svg { width: 14px; height: 14px; fill: var(--orange); }
+    .testi-card p {
+      font-size: .88rem; line-height: 1.9; color: var(--mid);
+      font-style: italic; margin-bottom: 1.6rem;
+    }
+    .testi-avatar {
+      width: 44px; height: 44px; border-radius: 50%; flex-shrink: 0;
+      background: linear-gradient(135deg, var(--orange), var(--orange-lt));
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-display); font-size: 1rem; color: var(--white); font-weight: 600;
+    }
+    .testi-name   { font-size: .88rem; font-weight: 700; color: var(--dark); }
+    .testi-origin { font-size: .75rem; color: var(--light); margin-top: .15rem; }
+
+    /* swiper dots dark bg */
+    .swiper-pagination-bullet { background: var(--orange-lt) !important; opacity: .4; }
+    .swiper-pagination-bullet-active { opacity: 1 !important; }
+
+    /* ═══════════════════════════════════════════
+       CTA
+    ═══════════════════════════════════════════ */
+    #cta {
+      position: relative; overflow: hidden;
+      background: linear-gradient(135deg, #2c1a0e 0%, #4a2c1a 50%, #3a2210 100%);
+    }
+    #cta::before {
+      content: ''; position: absolute; inset: 0; pointer-events: none;
+      background: radial-gradient(ellipse 900px 700px at 50% 110%, rgba(200,98,42,.22) 0%, transparent 65%);
+    }
+    #cta .eyebrow { color: var(--orange-lt); }
+    #cta .eyebrow::before { background: var(--orange-lt); }
+    #cta .section-title { color: var(--white); }
+    #cta .section-sub { color: rgba(255,255,255,.65); }
+
+    /* ═══════════════════════════════════════════
+       NEWSLETTER
+    ═══════════════════════════════════════════ */
+    #newsletter { background: var(--sage-bg); }
+    #newsletter h3 { font-family: var(--font-display); font-size: 1.5rem; color: var(--white); }
+    #newsletter p  { font-size: .88rem; color: rgba(255,255,255,.82); }
+    .nl-input {
+      border: none; border-radius: 0;
+      padding: .85rem 1.1rem; font-size: .85rem;
+      font-family: var(--font-body); outline: none;
+    }
+    .nl-input:focus { box-shadow: none; border: none; outline: none; }
+    .nl-btn {
+      background: var(--orange); color: var(--white);
+      border: none; padding: .85rem 1.5rem; border-radius: 0;
+      font-size: .72rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+      white-space: nowrap; cursor: pointer; transition: background .25s;
+    }
+    .nl-btn:hover { background: var(--orange-lt); }
+
+    /* ═══════════════════════════════════════════
+       FOOTER
+    ═══════════════════════════════════════════ */
+    footer { background: #120d04; }
+    .footer-brand-text { font-family: var(--font-display); font-size: 15px; color: var(--white); }
+    .footer-brand-text span { color: var(--orange); }
+    .footer-brand-mark {
+      width: 40px; height: 40px; border-radius: 50%;
+      border: 2px solid rgba(255,255,255,.3);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-display); color: rgba(255,255,255,.7); font-size: 14px; flex-shrink: 0;
+    }
+    footer p.brand-sub { font-size: .82rem; color: rgba(255,255,255,.45); line-height: 1.8; }
+    .social-btn {
+      width: 34px; height: 34px; border-radius: 50%;
+      border: 1px solid rgba(255,255,255,.15);
+      display: flex; align-items: center; justify-content: center;
+      color: rgba(255,255,255,.5); text-decoration: none; font-size: .78rem;
+      transition: border-color .2s, color .2s;
+    }
+    .social-btn:hover { border-color: var(--orange); color: var(--orange); }
+    .footer-col-title {
+      font-size: .68rem; font-weight: 700; letter-spacing: .16em;
+      text-transform: uppercase; color: rgba(255,255,255,.3); margin-bottom: 1.25rem;
+    }
+    .footer-link {
+      display: block; font-size: .82rem;
+      color: rgba(255,255,255,.55); text-decoration: none; margin-bottom: .65rem;
+      transition: color .2s;
+    }
+    .footer-link:hover { color: var(--orange-lt); }
+    .footer-contact-item { display: flex; gap: .65rem; margin-bottom: .9rem; }
+    .footer-contact-item svg { flex-shrink: 0; margin-top: 2px; opacity: .55; }
+    .footer-contact-item span { font-size: .82rem; color: rgba(255,255,255,.55); line-height: 1.65; }
+    .footer-divider { border-color: rgba(255,255,255,.07); }
+    .footer-bottom-text { font-size: .75rem; color: rgba(255,255,255,.28); }
+    .footer-bottom-link { color: rgba(255,255,255,.28); text-decoration: none; font-size: .75rem; margin-left: 1rem; transition: color .2s; }
+    .footer-bottom-link:hover { color: var(--orange-lt); }
+
+    /* ═══════════════════════════════════════════
+       COUNTER ANIMATION
+    ═══════════════════════════════════════════ */
+    [data-count] { display: inline; }
+
+    /* ═══════════════════════════════════════════
+       MOBILE TWEAKS
+    ═══════════════════════════════════════════ */
+    @media(max-width:991px){
+      .hero-deco { display: none; }
+      #hero { min-height: 380px; padding-top: 70px; }
+    }
+    @media(max-width:575px){
+      #hero { min-height: 320px; }
+      .hero-stat { padding: 1.1rem .5rem; }
+      .exp-photo-wrap { height: 260px; }
+    }
+
+    /* ═══════════════════════════════════════════
+       PARTICLE CANVAS
+    ═══════════════════════════════════════════ */
+    #particles-canvas {
+      position: absolute; inset: 0; pointer-events: none; z-index: 1; opacity: .35;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════
+     NAVBAR
+════════════════════════ -->
+<nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand text-center align-items-center gap-2" href="#">
+      <!-- <div class="navbar-brand-mark">cb</div>
+      <div class="navbar-brand-text">Calcutta <span>&</span> Beyond</div> -->
+      <img src="/assets/img/logo.svg" alt="">
+      <h4>Calcutta & Beyond</h4>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto gap-1">
+        <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+        <li class="nav-item"><a class="nav-link active" href="#">Experience</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Destination</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Gallery</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">About Us</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+<!-- ═══════════════════════
+     PAGE BANNER
+════════════════════════ -->
+<section id="hero">
+  <canvas id="particles-canvas"></canvas>
+  <div class="hero-mesh"></div>
+  <div class="hero-pattern"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-deco"></div>
+
+  <div class="container banner-inner">
+    <div class="row justify-content-center">
+      <div class="col-lg-8 col-xl-7 text-center" data-aos="fade-up" data-aos-duration="750">
+        <div class="banner-eyebrow">Calcutta &amp; Beyond</div>
+        <h1>Our <em>Experiences</em></h1>
+        <span class="banner-divider"></span>
+        <nav class="banner-breadcrumb" aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Experiences</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════
+     STATS STRIP
+════════════════════════ -->
+<div class="stats-strip">
+  <div class="container-fluid px-0">
+    <div class="row g-0">
+      <div class="col-4">
+        <div class="hero-stat" data-aos="fade-up" data-aos-delay="0">
+          <div class="hero-stat-num"><span data-count="12" data-suffix="+">0</span></div>
+          <div class="hero-stat-lbl">Years of Experience</div>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="hero-stat" data-aos="fade-up" data-aos-delay="80">
+          <div class="hero-stat-num"><span data-count="1400" data-suffix="+">0</span></div>
+          <div class="hero-stat-lbl">Happy Travellers</div>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="hero-stat" data-aos="fade-up" data-aos-delay="160">
+          <div class="hero-stat-num"><span data-count="48" data-suffix="+">0</span></div>
+          <div class="hero-stat-lbl">Unique Experiences</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════
+     SERVICES OVERVIEW
+════════════════════════ -->
+<section id="services" class="py-5 py-lg-6">
+  <div class="container">
+    <div class="row justify-content-center mb-5" data-aos="fade-up">
+      <div class="col-lg-7 text-center">
+        <span class="eyebrow">Your Kind of Travel</span>
+        <h2 class="section-title mb-3">Choose Your Experience</h2>
+        <p class="section-sub">We believe every traveller is different. That's why we offer deeply personalised journeys — each designed around who you are, not just where you want to go.</p>
+      </div>
+    </div>
+    <div class="row g-4">
+      <div class="col-sm-6 col-xl-3" data-aos="fade-up" data-aos-delay="0">
+        <div class="svc-card">
+          <div class="svc-thumb svc-thumb-solo"><div class="svc-thumb-inner">
+            <svg width="80" height="80" viewBox="0 0 80 80" fill="none" stroke="white" stroke-width="1.2"><circle cx="40" cy="24" r="16"/><path d="M12 76C12 56 68 56 68 76"/></svg>
+          </div></div>
+          <div class="svc-overlay"></div>
+          <div class="svc-body">
+            <span class="svc-tag">Independent Travel</span>
+            <h3>Solo Adventures</h3>
+            <p>Designed for the curious wanderer who seeks depth over breadth — personal connections, off-the-map routes, and freedom.</p>
+            <a href="#" class="svc-more">Discover More <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-xl-3" data-aos="fade-up" data-aos-delay="80">
+        <div class="svc-card">
+          <div class="svc-thumb svc-thumb-family"><div class="svc-thumb-inner">
+            <svg width="80" height="80" viewBox="0 0 80 80" fill="none" stroke="white" stroke-width="1.2"><circle cx="28" cy="22" r="12"/><circle cx="52" cy="22" r="12"/><circle cx="40" cy="52" r="8"/><path d="M8 76C8 60 70 60 70 76"/></svg>
+          </div></div>
+          <div class="svc-overlay"></div>
+          <div class="svc-body">
+            <span class="svc-tag">Groups & Families</span>
+            <h3>Family + Group Getaways</h3>
+            <p>Multi-generational trips that weave togetherness into every shared meal, cultural exchange, and rural stay.</p>
+            <a href="#" class="svc-more">Discover More <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-xl-3" data-aos="fade-up" data-aos-delay="160">
+        <div class="svc-card">
+          <div class="svc-thumb svc-thumb-wedding"><div class="svc-thumb-inner">
+            <svg width="80" height="80" viewBox="0 0 80 80" fill="none" stroke="white" stroke-width="1.2"><path d="M40 18 L45 32 L60 32 L48 41 L52 55 L40 46 L28 55 L32 41 L20 32 L35 32 Z"/><circle cx="40" cy="66" r="5"/></svg>
+          </div></div>
+          <div class="svc-overlay"></div>
+          <div class="svc-body">
+            <span class="svc-tag">Celebrations</span>
+            <h3>Destination Wedding + Events</h3>
+            <p>Celebrate life's milestones against Bengal's timeless heritage, riverside villages, and sacred landscapes.</p>
+            <a href="#" class="svc-more">Discover More <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6 col-xl-3" data-aos="fade-up" data-aos-delay="240">
+        <div class="svc-card">
+          <div class="svc-thumb svc-thumb-local"><div class="svc-thumb-inner">
+            <svg width="80" height="80" viewBox="0 0 80 80" fill="none" stroke="white" stroke-width="1.2"><circle cx="40" cy="40" r="28"/><path d="M24 40 Q32 27 40 40 Q48 53 56 40"/><line x1="40" y1="12" x2="40" y2="68"/><line x1="12" y1="40" x2="68" y2="40"/></svg>
+          </div></div>
+          <div class="svc-overlay"></div>
+          <div class="svc-body">
+            <span class="svc-tag">Immersive</span>
+            <h3>Local Life &amp; Departure</h3>
+            <p>Live as a local does — wake to village rhythms, join artisans at work, eat from community kitchens.</p>
+            <a href="#" class="svc-more">Discover More <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>.py-lg-6 { padding-top: 5rem !important; padding-bottom: 5rem !important; }</style>
+
+
+<!-- ═══════════════════════
+     FEATURE STRIP
+════════════════════════ -->
+<section id="features" class="py-4">
+  <div class="container-fluid px-0">
+    <div class="row g-0">
+      <div class="col-md-3" data-aos="fade-up" data-aos-delay="0">
+        <div class="feat-item">
+          <div class="feat-icon"><svg viewBox="0 0 24 24"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <h4>Authentic Destinations</h4>
+          <p>Places untouched by mass tourism, curated by locals who call them home.</p>
+        </div>
+      </div>
+      <div class="col-md-3" data-aos="fade-up" data-aos-delay="80">
+        <div class="feat-item">
+          <div class="feat-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+          <h4>Flexible Schedules</h4>
+          <p>Your pace, your timeline. Every itinerary adapts to how you love to travel.</p>
+        </div>
+      </div>
+      <div class="col-md-3" data-aos="fade-up" data-aos-delay="160">
+        <div class="feat-item">
+          <div class="feat-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+          <h4>Local Expert Guides</h4>
+          <p>Every guide is a community member — storytellers, not just navigators.</p>
+        </div>
+      </div>
+      <div class="col-md-3" data-aos="fade-up" data-aos-delay="240">
+        <div class="feat-item">
+          <div class="feat-icon"><svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+          <h4>Sustainable Tourism</h4>
+          <p>Every rupee you spend flows back to the communities that host you.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════
+     EXPERIENCE DETAIL
+════════════════════════ -->
+<section id="experiences" class="py-5 py-lg-6">
+  <div class="container">
+
+    <!-- 1. SOLO -->
+    <div class="row align-items-center g-5 mb-5">
+      <div class="col-lg-6" data-aos="fade-right" data-aos-duration="800">
+        <div class="exp-photo-wrap">
+          <div class="exp-photo-main ph-rural-a">
+            <img src="/assets/img/service1.jpg" alt="">
+          </div>
+          <div class="exp-photo-accent ph-rural-b">
+            <img src="/assets/img/service2.jpg" alt="">
+          </div>
+          <span class="exp-label">Rural Immersion</span>
+        </div>
+      </div>
+      <div class="col-lg-6" data-aos="fade-left" data-aos-duration="800" data-aos-delay="100">
+        <span class="eyebrow">Solo Adventures</span>
+        <h2 class="section-title mb-3">Unscripted Travel,<br>Deeply Personal</h2>
+        <p class="section-sub mb-3">Designed for the traveller who has outgrown package tours. Our solo journeys are co-created with you — built around your curiosities, your rhythm, and the Bengal you want to find.</p>
+        <p class="section-sub">You'll stay with families, wake up to paddy fields, cycle through canal-side villages, and sit with potters whose craft traces back centuries.</p>
+        <ul class="exp-list mt-3">
+          <li>Personalised pre-trip consultation with a local expert</li>
+          <li>Handpicked community homestays with local families</li>
+          <li>Artisan workshops: pottery, weaving, cooking</li>
+          <li>Private guided heritage walks through old Calcutta</li>
+          <li>24/7 support with dedicated trip concierge</li>
+        </ul>
+        <a href="#" class="btn-cb-primary mt-2">Plan Your Solo Journey <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      </div>
+    </div>
+
+    <hr class="exp-divider"/>
+
+    <!-- 2. FAMILY -->
+    <div class="row align-items-center g-5 mb-5 flex-lg-row-reverse">
+      <div class="col-lg-6" data-aos="fade-left" data-aos-duration="800">
+        <div class="exp-photo-wrap">
+          <div class="exp-photo-main ph-heritage-a">
+            <img src="/assets/img/story1.jpg" alt="">
+          </div>
+          <div class="exp-photo-accent ph-heritage-b">
+            <img src="/assets/img/story2.jpg" alt="">
+          </div>
+          <span class="exp-label">Heritage & Culture</span>
+        </div>
+      </div>
+      <div class="col-lg-6" data-aos="fade-right" data-aos-duration="800" data-aos-delay="100">
+        <span class="eyebrow">Family + Group Getaways</span>
+        <h2 class="section-title mb-3">Stories Your Family<br>Will Tell for Decades</h2>
+        <p class="section-sub mb-3">Some trips are holidays. Others become family legends. We build the second kind — itineraries where every generation finds something to marvel at, to learn, and to laugh about together.</p>
+        <p class="section-sub">From puja celebrations in heritage mansions to cooking Bengali feasts with village grandmothers, your group leaves connected to each other and to a culture that welcomed you in.</p>
+        <ul class="exp-list mt-3">
+          <li>Dedicated group coordinator from arrival to departure</li>
+          <li>Age-appropriate activities for every generation</li>
+          <li>Private transport with experienced driver-guides</li>
+          <li>Exclusive access to heritage properties & zamindari estates</li>
+          <li>Customised dietary needs and special occasion surprises</li>
+        </ul>
+        <a href="#" class="btn-cb-primary mt-2">Plan Your Group Trip <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      </div>
+    </div>
+
+    <hr class="exp-divider"/>
+
+    <!-- 3. LOCAL LIFE -->
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6" data-aos="fade-right" data-aos-duration="800">
+        <div class="exp-photo-wrap">
+          <div class="exp-photo-main ph-local-a">
+            <img src="/assets/img/community2.jpg" alt="">
+          </div>
+          <div class="exp-photo-accent ph-local-b">
+            <img src="/assets/img/community1.jpg" alt="">
+          </div>
+          <span class="exp-label">Local Life</span>
+        </div>
+      </div>
+      <div class="col-lg-6" data-aos="fade-left" data-aos-duration="800" data-aos-delay="100">
+        <span class="eyebrow">Local Life & Departure</span>
+        <h2 class="section-title mb-3">Become Part of the<br>Community, Briefly</h2>
+        <p class="section-sub mb-3">The most meaningful travel is when the boundary between tourist and local dissolves. You spend your mornings in the market with the fisherman, your afternoons with the weaver.</p>
+        <p class="section-sub">This isn't observation. It's participation. You leave having contributed something — and received something no souvenir shop can offer.</p>
+        <ul class="exp-list mt-3">
+          <li>Village immersion with pre-assigned local family hosts</li>
+          <li>Participate in daily rural rituals and harvesting seasons</li>
+          <li>Contribute to community development micro-projects</li>
+          <li>Learn traditional skills: terracotta art, jute weaving, mustard oil pressing</li>
+          <li>Personalised farewell with community ceremony</li>
+        </ul>
+        <a href="#" class="btn-cb-primary mt-2">Discover Local Life <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════
+     PROCESS
+════════════════════════ -->
+<section id="process" class="py-5 py-lg-6">
+  <div class="container">
+    <div class="row justify-content-center mb-5" data-aos="fade-up">
+      <div class="col-lg-6 text-center">
+        <span class="eyebrow">How We Work</span>
+        <h2 class="section-title mb-3">Your Journey Begins Long<br>Before You Arrive</h2>
+        <p class="section-sub">We don't just book trips. We design transformative experiences — and that takes care, conversation, and deep local knowledge.</p>
+      </div>
+    </div>
+    <div class="process-wrap">
+      <div class="process-line d-none d-md-block"></div>
+      <div class="row g-4 text-center">
+        <div class="col-6 col-md process-step" data-aos="fade-up" data-aos-delay="0">
+          <div class="step-circle">01</div>
+          <h5>Discovery Call</h5>
+          <p>We listen. Your interests, travel style, and timeline shape everything that follows.</p>
+        </div>
+        <div class="col-6 col-md process-step" data-aos="fade-up" data-aos-delay="80">
+          <div class="step-circle">02</div>
+          <h5>Custom Proposal</h5>
+          <p>Within 48 hours, we present a tailored itinerary — no templates, no packages.</p>
+        </div>
+        <div class="col-6 col-md process-step" data-aos="fade-up" data-aos-delay="160">
+          <div class="step-circle">03</div>
+          <h5>Refine Together</h5>
+          <p>We collaborate until every detail resonates. Your input shapes the final journey.</p>
+        </div>
+        <div class="col-6 col-md process-step" data-aos="fade-up" data-aos-delay="240">
+          <div class="step-circle">04</div>
+          <h5>Seamless Execution</h5>
+          <p>From transfers to homestays, every element is arranged with careful precision.</p>
+        </div>
+        <div class="col-6 col-md process-step mx-auto" data-aos="fade-up" data-aos-delay="320">
+          <div class="step-circle">05</div>
+          <h5>Travel & Return</h5>
+          <p>You travel. We're with you every step. You return changed, enriched, and welcomed back.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════
+     ITINERARY
+════════════════════════ -->
+<section id="itinerary" class="py-5 py-lg-6">
+  <div class="container">
+    <div class="row g-5 align-items-end mb-4">
+      <div class="col-lg-8" data-aos="fade-up">
+        <span class="eyebrow">Our Itinerary</span>
+        <h2 class="section-title mb-3">Kolkata Tour<br>Itinerary Highlights</h2>
+        <p class="section-sub">A glimpse into the journeys we craft — each a living story, built from Calcutta's layered history, Bengal's rural soul, and the warmth of its people.</p>
+      </div>
+      <div class="col-lg-4 text-lg-end" data-aos="fade-up" data-aos-delay="100">
+        <a href="#" class="btn-cb-primary">View All Itineraries <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      </div>
+    </div>
+
+    <!-- Tabs -->
+    <ul class="nav itin-tabs mb-4" data-aos="fade-up" data-aos-delay="80">
+      <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" href="#tab3day">3-Day City</a></li>
+      <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#tab5day">5-Day Heritage</a></li>
+      <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#tab7day">7-Day Rural</a></li>
+      <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#tab10day">10-Day Grand</a></li>
+    </ul>
+    <div class="tab-content">
+      <!-- 3 Day -->
+      <div class="tab-pane fade show active" id="tab3day">
+        <div class="row g-4">
+          <div class="col-md-4" data-aos="fade-up" data-aos-delay="0">
+            <div class="itin-card">
+              <div class="itin-day">Day 1</div>
+              <h4>Arrival & City Exploration</h4>
+              <p>Met at Dum Dum airport by your personal guide. Check-in to heritage guest house in South Calcutta. Evening walk through Park Street's colonial lanes and a welcome Bengali dinner.</p>
+              <div><span class="itin-tag">Heritage Walk</span><span class="itin-tag">Bengali Cuisine</span><span class="itin-tag">Colonial Calcutta</span></div>
+            </div>
+          </div>
+          <div class="col-md-4" data-aos="fade-up" data-aos-delay="80">
+            <div class="itin-card">
+              <div class="itin-day">Day 2</div>
+              <h4>Heritage & Culture Deep Dive</h4>
+              <p>Morning at Kumortuli watching masters sculpt the goddess. Afternoon at the Indian Museum and College Street — Asia's largest second-hand book market. Evening boat on the Hooghly.</p>
+              <div><span class="itin-tag">Artisans</span><span class="itin-tag">Museum</span><span class="itin-tag">River at Sunset</span></div>
+            </div>
+          </div>
+          <div class="col-md-4" data-aos="fade-up" data-aos-delay="160">
+            <div class="itin-card">
+              <div class="itin-day">Day 3</div>
+              <h4>Local Life & Departure</h4>
+              <p>Early morning at Mullick Ghat flower market — Calcutta at its most alive. Cooking class with a local family. Afternoon free for final exploration. Evening transfer with a full heart.</p>
+              <div><span class="itin-tag">Flower Market</span><span class="itin-tag">Cooking Class</span><span class="itin-tag">Farewell</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 5 Day -->
+      <div class="tab-pane fade" id="tab5day">
+        <div class="row g-4">
+          <div class="col-md-4" data-aos="fade-up">
+            <div class="itin-card">
+              <div class="itin-day">Day 1–2</div>
+              <h4>Arrival & Heritage Quarter</h4>
+              <p>Settle in at a colonial mansion guest house. Full-day walk through North Calcutta's lane culture, visiting heritage havelis, marble palaces, and century-old sweetshops.</p>
+              <div><span class="itin-tag">Marble Palace</span><span class="itin-tag">North Calcutta</span><span class="itin-tag">Sweets</span></div>
+            </div>
+          </div>
+          <div class="col-md-4" data-aos="fade-up" data-aos-delay="80">
+            <div class="itin-card">
+              <div class="itin-day">Day 3</div>
+              <h4>Bishnupur Temple Town</h4>
+              <p>Day trip to Bishnupur — a terracotta temple town from the Malla kings. Watch artisans hand-build the famous Bankura horse and browse hand-loom Baluchari sarees.</p>
+              <div><span class="itin-tag">Terracotta</span><span class="itin-tag">Weaving</span><span class="itin-tag">Temple</span></div>
+            </div>
+          </div>
+          <div class="col-md-4" data-aos="fade-up" data-aos-delay="160">
+            <div class="itin-card">
+              <div class="itin-day">Day 4–5</div>
+              <h4>Village Stay & Farewell</h4>
+              <p>Overnight in a rural homestay by a village pond. Fish with the family at dawn. Cook your own meal. Leave with handmade gifts, local songs, and stories that last a lifetime.</p>
+              <div><span class="itin-tag">Homestay</span><span class="itin-tag">Fishing</span><span class="itin-tag">Community Meal</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 7 Day -->
+      <div class="tab-pane fade" id="tab7day">
+        <div class="row g-4">
+          <div class="col-md-4" data-aos="fade-up">
+            <div class="itin-card">
+              <div class="itin-day">Day 1–2</div>
+              <h4>Calcutta Foundations</h4>
+              <p>Deep dive into Calcutta's layered identity — colonial, cultural, and culinary. Visit the writers' buildings, Victoria Memorial, and Rabindranath Tagore's ancestral home.</p>
+              <div><span class="itin-tag">Victoria Memorial</span><span class="itin-tag">Culture</span></div>
+            </div>
+          </div>
+          <div class="col-md-4" data-aos="fade-up" data-aos-delay="80">
+            <div class="itin-card">
+              <div class="itin-day">Day 3–5</div>
+              <h4>Rural Bengal Deep Dive</h4>
+              <p>Three nights in two different villages — one on a river, one near terracotta artisan clusters. Learn pottery, harvest mustard, cook over wood fires, and sleep under a canopy of stars.</p>
+              <div><span class="itin-tag">Pottery</span><span class="itin-tag">River Village</span><span class="itin-tag">Stars</span></div>
+            </div>
+          </div>
+          <div class="col-md-4" data-aos="fade-up" data-aos-delay="160">
+            <div class="itin-card">
+              <div class="itin-day">Day 6–7</div>
+              <h4>Sundarbans Edge & Return</h4>
+              <p>Boat through the mangrove delta. Spot wildlife at dawn. Visit a honey-collector community. Return to Calcutta for a farewell dinner, handmade gifts, and warm goodbyes.</p>
+              <div><span class="itin-tag">Sundarbans</span><span class="itin-tag">Mangroves</span><span class="itin-tag">Farewell</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 10 Day -->
+      <div class="tab-pane fade" id="tab10day">
+        <div class="row g-4">
+          <div class="col-md-4" data-aos="fade-up">
+            <div class="itin-card">
+              <div class="itin-day">Day 1–3</div>
+              <h4>Calcutta in Full</h4>
+              <p>Heritage districts, contemporary art scene, legendary eateries and the street life that defines the city — covered with depth and local context unavailable in any guidebook.</p>
+              <div><span class="itin-tag">Art Scene</span><span class="itin-tag">Street Food</span><span class="itin-tag">Architecture</span></div>
+            </div>
+          </div>
+          <div class="col-md-4" data-aos="fade-up" data-aos-delay="80">
+            <div class="itin-card">
+              <div class="itin-day">Day 4–7</div>
+              <h4>Village Circuits of Bengal</h4>
+              <p>Three distinct village regions — Bishnupur, Shantiniketan, and a Sundarbans delta village. Each with its own craft, cuisine, and community character.</p>
+              <div><span class="itin-tag">Shantiniketan</span><span class="itin-tag">Crafts</span><span class="itin-tag">Delta</span></div>
+            </div>
+          </div>
+          <div class="col-md-4" data-aos="fade-up" data-aos-delay="160">
+            <div class="itin-card">
+              <div class="itin-day">Day 8–10</div>
+              <h4>Puri Coast & Grand Return</h4>
+              <p>End with the Odisha coast — sunrise over the Bay of Bengal, the Jagannath Temple, and a beach farewell dinner before returning transformed to Calcutta airport.</p>
+              <div><span class="itin-tag">Puri</span><span class="itin-tag">Bay of Bengal</span><span class="itin-tag">Coastal</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════
+     TESTIMONIALS
+════════════════════════ -->
+<section id="testimonials" class="py-5 py-lg-6">
+  <div class="container">
+    <div class="row justify-content-center mb-5" data-aos="fade-up">
+      <div class="col-lg-6 text-center">
+        <span class="eyebrow">Happy Travellers</span>
+        <h2 class="section-title mb-3">What Our Guests Say</h2>
+        <p class="section-sub">These words mean the world to us — proof that what we do actually matters to the people we do it for.</p>
+      </div>
+    </div>
+
+    <!-- Desktop: 3-col row -->
+    <div class="row g-4 d-none d-md-flex">
+      <div class="col-md-4" data-aos="fade-up" data-aos-delay="0">
+        <div class="testi-card">
+          <div class="testi-stars">
+            <svg class="star-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="star-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="star-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="star-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="star-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <p>"Our trip was absolutely incredible! We really appreciated how smoothly everything began — the pre-arranged transportation was seamless and everyone we encountered was warm and genuinely welcoming. The location and view were simply surreal."</p>
+          <div class="d-flex align-items-center gap-3">
+            <div class="testi-avatar">SM</div>
+            <div><div class="testi-name">Sarah &amp; Michael</div><div class="testi-origin">London, United Kingdom</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+        <div class="testi-card">
+          <div class="testi-stars">
+            <svg class="star-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="star-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="star-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="star-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="star-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <p>"I came alone and left with a community. Every day was a revelation — cooking with the village women, cycling through mustard fields at dawn, sitting with artisans as they worked. Calcutta &amp; Beyond are the real thing."</p>
+          <div class="d-flex align-items-center gap-3">
+            <div class="testi-avatar">JT</div>
+            <div><div class="testi-name">Jennifer T.</div><div class="testi-origin">Toronto, Canada</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+        <div class="testi-card">
+          <div class="testi-stars">
+            <svg class="star-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="star-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="star-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="star-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg class="star-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <p>"Our family of four — ages 8 to 72 — couldn't have been more different as travellers. And yet somehow Calcutta &amp; Beyond designed a trip everyone loved equally. My mother-in-law still talks about the evening boat ride."</p>
+          <div class="d-flex align-items-center gap-3">
+            <div class="testi-avatar">RK</div>
+            <div><div class="testi-name">Rajan Kapoor Family</div><div class="testi-origin">Singapore</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile: Swiper carousel -->
+    <div class="d-md-none" data-aos="fade-up">
+      <div class="swiper testi-swiper">
+        <div class="swiper-wrapper pb-5">
+          <div class="swiper-slide">
+            <div class="testi-card">
+              <div class="testi-stars"><svg class="star-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg class="star-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg class="star-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg class="star-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg class="star-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
+              <p>"Our trip was absolutely incredible! The seamless transportation, warm people, and surreal views made it unforgettable."</p>
+              <div class="d-flex align-items-center gap-3"><div class="testi-avatar">SM</div><div><div class="testi-name">Sarah & Michael</div><div class="testi-origin">London, UK</div></div></div>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="testi-card">
+              <div class="testi-stars"><svg class="star-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg class="star-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg class="star-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg class="star-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg class="star-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
+              <p>"I came alone and left with a community. Every single day was a revelation. Calcutta & Beyond are the real thing."</p>
+              <div class="d-flex align-items-center gap-3"><div class="testi-avatar">JT</div><div><div class="testi-name">Jennifer T.</div><div class="testi-origin">Toronto, Canada</div></div></div>
+            </div>
+          </div>
+          <div class="swiper-slide">
+            <div class="testi-card">
+              <div class="testi-stars"><svg class="star-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg class="star-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg class="star-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg class="star-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg><svg class="star-svg" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
+              <p>"A family of four — ages 8 to 72 — and everyone loved it equally. My mother-in-law still talks about the evening boat ride."</p>
+              <div class="d-flex align-items-center gap-3"><div class="testi-avatar">RK</div><div><div class="testi-name">Rajan Kapoor Family</div><div class="testi-origin">Singapore</div></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-pagination"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════
+     CTA
+════════════════════════ -->
+<section id="cta" class="py-5 py-lg-6 text-center position-relative">
+  <div class="container position-relative" style="z-index:1">
+    <span class="eyebrow justify-content-center" data-aos="fade-up">Start Your Journey</span>
+    <h2 class="section-title mx-auto mb-3" style="max-width:680px" data-aos="fade-up" data-aos-delay="60">
+      The Best Travel Experiences Are Planned by Someone Who Actually Knows You.
+    </h2>
+    <p class="section-sub mx-auto mb-5" style="max-width:520px" data-aos="fade-up" data-aos-delay="120">
+      Let's have a conversation. Tell us who you are, what moves you, and when you want to go — we'll take care of everything else.
+    </p>
+    <div class="d-flex flex-wrap gap-3 justify-content-center" data-aos="fade-up" data-aos-delay="180">
+      <a href="#" class="btn-cb-primary">Book a Discovery Call <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      <a href="#itinerary" class="btn-cb-outline">Browse All Itineraries</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════
+     NEWSLETTER
+════════════════════════ -->
+<section id="newsletter" class="py-5">
+  <div class="container">
+    <div class="row align-items-center g-4">
+      <div class="col-lg-4" data-aos="fade-right">
+        <h3 class="mb-1">Find How We Work</h3>
+        <p class="mb-0">Access our "How we work" guide + subscribe.</p>
+      </div>
+      <div class="col-lg-8" data-aos="fade-left" data-aos-delay="80">
+        <div class="d-flex flex-wrap gap-0">
+          <input type="text" class="nl-input flex-fill" placeholder="First Name" style="min-width:120px"/>
+          <input type="text" class="nl-input flex-fill" placeholder="Last Name" style="min-width:120px"/>
+          <input type="email" class="nl-input flex-fill" placeholder="E-mail Address" style="min-width:180px"/>
+          <button class="nl-btn">Subscribe</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════
+     FOOTER
+════════════════════════ -->
+<footer class="py-5 pb-4">
+  <div class="container">
+    <div class="row g-5">
+      <div class="col-lg-3 col-md-6">
+        <div class="d-flex align-items-center gap-2 mb-3">
+          <!-- <div class="footer-brand-mark">cb</div> -->
+          <div class="footer-brand-text text-center">
+      <img src="/assets/img/logo.svg" alt="" class="mb-1">
+      <h4>Calcutta & Beyond</h4>
+          </div>
+        </div>
+        <p class="brand-sub">A platform for sustainable rural tourism, connecting travellers with the authentic heart of Bengal.</p>
+        <div class="d-flex gap-2 mt-3">
+          <a href="#" class="social-btn">f</a>
+          <a href="#" class="social-btn">in</a>
+          <a href="#" class="social-btn">ig</a>
+          <a href="#" class="social-btn">yt</a>
+        </div>
+      </div>
+      <div class="col-lg-2 col-md-6 col-6">
+        <div class="footer-col-title">Experiences</div>
+        <a href="#" class="footer-link">Solo Adventures</a>
+        <a href="#" class="footer-link">Family &amp; Groups</a>
+        <a href="#" class="footer-link">Destination Weddings</a>
+        <a href="#" class="footer-link">Local Life</a>
+        <a href="#" class="footer-link">Corporate Retreats</a>
+      </div>
+      <div class="col-lg-2 col-md-6 col-6">
+        <div class="footer-col-title">Company</div>
+        <a href="#" class="footer-link">About Us</a>
+        <a href="#" class="footer-link">How We Work</a>
+        <a href="#" class="footer-link">Sustainability</a>
+        <a href="#" class="footer-link">Gallery</a>
+        <a href="#" class="footer-link">Blog</a>
+        <a href="#" class="footer-link">Contact</a>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <div class="footer-col-title">Contact</div>
+        <div class="footer-contact-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.6)" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>The address of The Company,<br>Kolkata, West Bengal</span>
+        </div>
+        <div class="footer-contact-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.6)" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          <span>hello@calcuttabeyond.com</span>
+        </div>
+        <div class="footer-contact-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.6)" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.4 2 2 0 0 1 3.58 1.21h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <span>+00 000-000-00</span>
+        </div>
+      </div>
+    </div>
+    <hr class="footer-divider mt-5 mb-4"/>
+    <div class="d-flex flex-wrap justify-content-between align-items-center gap-3">
+      <p class="footer-bottom-text mb-0">© 2025 Calcutta & Beyond. All rights reserved.</p>
+      <div>
+        <a href="#" class="footer-bottom-link">Privacy</a>
+        <a href="#" class="footer-bottom-link">Terms</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<!-- ═══════════════════════
+     SCRIPTS
+════════════════════════ -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<script>
+/* ─── AOS ─────────────────── */
+AOS.init({ once: true, duration: 700, easing: 'ease-out-cubic' });
+
+/* ─── Sticky Nav shrink ────── */
+window.addEventListener('scroll', () => {
+  document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 60);
+});
+
+/* ─── Counter animation ────── */
+function animateCount(el) {
+  const target = parseInt(el.getAttribute('data-count'));
+  const suffix = el.getAttribute('data-suffix') || '';
+  const dur = 1800;
+  const start = performance.now();
+  (function step(now) {
+    const p = Math.min((now - start) / dur, 1);
+    const ease = 1 - Math.pow(1 - p, 3);
+    el.textContent = Math.floor(ease * target) + (p < 1 ? '' : suffix);
+    if (p < 1) requestAnimationFrame(step);
+    else el.textContent = target + suffix;
+  })(start);
+}
+const countObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { animateCount(e.target); countObs.unobserve(e.target); } });
+}, { threshold: 0.5 });
+document.querySelectorAll('[data-count]').forEach(el => countObs.observe(el));
+
+/* ─── Testimonials Swiper ──── */
+new Swiper('.testi-swiper', {
+  slidesPerView: 1, spaceBetween: 20, loop: true,
+  pagination: { el: '.swiper-pagination', clickable: true },
+  autoplay: { delay: 4500, disableOnInteraction: false }
+});
+
+/* ─── Particle canvas ────────  */
+(function() {
+  const canvas = document.getElementById('particles-canvas');
+  const ctx = canvas.getContext('2d');
+  let W, H, particles;
+
+  function resize() {
+    W = canvas.width  = canvas.offsetWidth;
+    H = canvas.height = canvas.offsetHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  function rand(a, b) { return a + Math.random() * (b - a); }
+
+  function init() {
+    particles = Array.from({ length: 55 }, () => ({
+      x: rand(0, W), y: rand(0, H),
+      r: rand(0.5, 2),
+      vx: rand(-0.2, 0.2), vy: rand(-0.25, -0.05),
+      alpha: rand(0.2, 0.7)
+    }));
+  }
+  init();
+
+  (function loop() {
+    ctx.clearRect(0, 0, W, H);
+    particles.forEach(p => {
+      p.x += p.vx; p.y += p.vy;
+      if (p.y < -5) { p.y = H + 5; p.x = rand(0, W); }
+      if (p.x < -5) p.x = W + 5;
+      if (p.x > W + 5) p.x = -5;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(200,150,80,${p.alpha})`;
+      ctx.fill();
+    });
+    requestAnimationFrame(loop);
+  })();
+})();
+</script>
+</body>
+</html>
