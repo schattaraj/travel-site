@@ -8,7 +8,8 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
   <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet"/>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
-
+  <!-- Custom CSS -->
+  <link href="assets/css/style.css" rel="stylesheet"/>
   <style>
     /* ═══════════════════════════════════════════
        TOKENS
@@ -111,7 +112,7 @@
       position: relative; display: flex; align-items: center;
       background: linear-gradient(135deg, #1e0e05 0%, #3a2010 35%, #5c3820 60%, #7a5030 100%);
       background-size: cover; background-position: center;
-      overflow: hidden; padding-top: 80px;
+      overflow: hidden; padding-top: 140px;
     }
     .hero-mesh {
       position: absolute; inset: 0; pointer-events: none;
@@ -148,6 +149,24 @@
     .page-breadcrumb a { color: rgba(255,255,255,.55); text-decoration: none; transition: color .2s; }
     .page-breadcrumb a:hover { color: var(--orange-lt); }
     .page-breadcrumb span { margin: 0 .45rem; }
+
+        /* Breadcrumb */
+    .banner-breadcrumb .breadcrumb {
+      justify-content: center; margin: 0;
+      background: transparent; padding: 0;
+    }
+    .banner-breadcrumb .breadcrumb-item {
+      font-size: .76rem; font-weight: 600; letter-spacing: .04em;
+    }
+    .banner-breadcrumb .breadcrumb-item a {
+      color: rgba(255,255,255,.58); text-decoration: none;
+      transition: color .2s;
+    }
+    .banner-breadcrumb .breadcrumb-item a:hover { color: var(--orange-lt); }
+    .banner-breadcrumb .breadcrumb-item.active { color: var(--orange-lt); }
+    .banner-breadcrumb .breadcrumb-item + .breadcrumb-item::before {
+      content: '/'; color: rgba(255,255,255,.28); padding: 0 .55rem;
+    }
 
     /* ═══════════════════════════════════════════
        STATS STRIP
@@ -235,24 +254,24 @@
     .gallery-item:hover .gallery-zoom { opacity: 1; transform: scale(1); }
 
     /* Gradient placeholders per item */
-    .gph-1  { background-color: #7A5830; background-image: url('assets/img/gallery-1.jpg'); }
-    .gph-2  { background-color: #2E5C38; background-image: url('assets/img/gallery-2.jpg'); }
-    .gph-3  { background-color: #2A4E6E; background-image: url('assets/img/gallery-3.jpg'); }
-    .gph-4  { background-color: #6E3E1E; background-image: url('assets/img/gallery-4.jpg'); }
-    .gph-5  { background-color: #5C6E2E; background-image: url('assets/img/gallery-5.jpg'); }
-    .gph-6  { background-color: #6E4E2E; background-image: url('assets/img/gallery-6.jpg'); }
-    .gph-7  { background-color: #5E2E6E; background-image: url('assets/img/gallery-7.jpg'); }
-    .gph-8  { background-color: #7A6E2E; background-image: url('assets/img/gallery-8.jpg'); }
-    .gph-9  { background-color: #2E6E6A; background-image: url('assets/img/gallery-9.jpg'); }
-    .gph-10 { background-color: #7A4E2E; background-image: url('assets/img/gallery-10.jpg'); }
-    .gph-11 { background-color: #3E6E2E; background-image: url('assets/img/gallery-11.jpg'); }
-    .gph-12 { background-color: #2E3E7A; background-image: url('assets/img/gallery-12.jpg'); }
-    .gph-13 { background-color: #6E2E3E; background-image: url('assets/img/gallery-13.jpg'); }
-    .gph-14 { background-color: #4E6E2E; background-image: url('assets/img/gallery-14.jpg'); }
-    .gph-15 { background-color: #7A5E2E; background-image: url('assets/img/gallery-15.jpg'); }
-    .gph-16 { background-color: #2E7A5E; background-image: url('assets/img/gallery-16.jpg'); }
-    .gph-17 { background-color: #7A2E4E; background-image: url('assets/img/gallery-17.jpg'); }
-    .gph-18 { background-color: #5E7A2E; background-image: url('assets/img/gallery-18.jpg'); }
+    .gph-1  { background-color: #7A5830; background-image: url('assets/img/gallery-1(1).jpg'); }
+    .gph-2  { background-color: #2E5C38; background-image: url('assets/img/gallery-1(2).jpg'); }
+    .gph-3  { background-color: #2A4E6E; background-image: url('assets/img/gallery-1(3).jpg'); }
+    .gph-4  { background-color: #6E3E1E; background-image: url('assets/img/gallery-1(4).jpg'); }
+    .gph-5  { background-color: #5C6E2E; background-image: url('assets/img/gallery-1(5).jpg'); }
+    .gph-6  { background-color: #6E4E2E; background-image: url('assets/img/gallery-1(6).jpg'); }
+    .gph-7  { background-color: #5E2E6E; background-image: url('assets/img/gallery-1(7).jpg'); }
+    .gph-8  { background-color: #7A6E2E; background-image: url('assets/img/gallery-1(8).jpg'); }
+    .gph-9  { background-color: #2E6E6A; background-image: url('assets/img/gallery-1(9).jpg'); }
+    .gph-10 { background-color: #7A4E2E; background-image: url('assets/img/gallery-1(10).jpg'); }
+    .gph-11 { background-color: #3E6E2E; background-image: url('assets/img/gallery-1(11).jpg'); }
+    .gph-12 { background-color: #2E3E7A; background-image: url('assets/img/gallery-1(12).jpg'); }
+    .gph-13 { background-color: #6E2E3E; background-image: url('assets/img/gallery-1(13).jpg'); }
+    .gph-14 { background-color: #4E6E2E; background-image: url('assets/img/gallery-1(14).jpg'); }
+    .gph-15 { background-color: #7A5E2E; background-image: url('assets/img/gallery-1(15).jpg'); }
+    .gph-16 { background-color: #2E7A5E; background-image: url('assets/img/gallery-1(16).jpg'); }
+    .gph-17 { background-color: #7A2E4E; background-image: url('assets/img/gallery-1(17).jpg'); }
+    .gph-18 { background-color: #5E7A2E; background-image: url('assets/img/gallery-1(18).jpg'); }
 
     #no-results {
       display: none; text-align: center;
@@ -322,26 +341,6 @@
     }
     #cta-gallery h2 em { font-style: italic; color: var(--orange-lt); }
     #cta-gallery p { font-size: .95rem; color: rgba(255,255,255,.6); line-height: 1.8; }
-
-    /* ═══════════════════════════════════════════
-       NEWSLETTER
-    ═══════════════════════════════════════════ */
-    #newsletter { background: var(--sage-bg); }
-    #newsletter h3 { font-family: var(--font-display); font-size: 1.5rem; color: var(--white); }
-    #newsletter p  { font-size: .88rem; color: rgba(255,255,255,.82); }
-    .nl-input {
-      border: none; border-radius: 0; padding: .85rem 1.1rem;
-      font-size: .85rem; font-family: var(--font-body); outline: none;
-    }
-    .nl-input:focus { box-shadow: none; }
-    .nl-btn {
-      background: var(--orange); color: var(--white); border: none;
-      padding: .85rem 1.5rem; border-radius: 0;
-      font-size: .72rem; font-weight: 700; letter-spacing: .1em;
-      text-transform: uppercase; white-space: nowrap;
-      cursor: pointer; transition: background .25s;
-    }
-    .nl-btn:hover { background: var(--orange-lt); }
 
     /* ═══════════════════════════════════════════
        FOOTER  — experieces.html logo style
@@ -422,9 +421,9 @@
       <ul class="navbar-nav ms-auto gap-1">
         <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
         <li class="nav-item"><a class="nav-link" href="experieces.html">Experience</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">Destination</a></li>
+        <li class="nav-item"><a class="nav-link" href="destination.html">Destination</a></li>
         <li class="nav-item"><a class="nav-link active" href="gallery.html">Gallery</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">About Us</a></li>
+        <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
         <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
       </ul>
     </div>
@@ -446,9 +445,15 @@
     <p class="banner-sub mx-auto" data-aos="fade-up" data-aos-delay="220">
       Moments captured across Bengal's heartland — from ancient havelis and monsoon-soaked fields to vibrant festivals and intimate village life.
     </p>
-    <div class="page-breadcrumb" data-aos="fade-up" data-aos-delay="280">
+    <!-- <div class="page-breadcrumb" data-aos="fade-up" data-aos-delay="280">
       <a href="index.html">Home</a><span>›</span>Gallery
-    </div>
+    </div> -->
+    <nav class="banner-breadcrumb" aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Experiences</li>
+          </ol>
+    </nav>
   </div>
 </section>
 
@@ -501,7 +506,7 @@
 
       <!-- 1 · Heritage · large -->
       <div class="gallery-item large gph-1" data-category="heritage" data-title="Marble Palace, North Kolkata" data-col="#7A5830">
-        <img src="assets/img/gallery-1.jpg" alt="Marble Palace, North Kolkata" loading="lazy">
+        <img src="assets/img/gallery-1(1).jpg" alt="Marble Palace, North Kolkata" loading="lazy">
         <div class="gallery-overlay">
           <div class="gallery-cat-tag">Heritage</div>
           <div class="gallery-item-title">Marble Palace, North Kolkata</div>
@@ -511,7 +516,7 @@
 
       <!-- 2 · Rural Life · tall -->
       <div class="gallery-item tall gph-2" data-category="rural-life" data-title="Village Morning Ritual" data-col="#2E5C38">
-        <img src="assets/img/gallery-2.jpg" alt="Village Morning Ritual" loading="lazy">
+        <img src="assets/img/gallery-1(2).jpg" alt="Village Morning Ritual" loading="lazy">
         <div class="gallery-overlay">
           <div class="gallery-cat-tag">Rural Life</div>
           <div class="gallery-item-title">Village Morning Ritual</div>
@@ -521,7 +526,7 @@
 
       <!-- 3 · Nature · normal -->
       <div class="gallery-item gph-3" data-category="nature" data-title="Sundarbans Mangrove Creek" data-col="#2A4E6E">
-        <img src="assets/img/gallery-3.jpg" alt="Sundarbans Mangrove Creek" loading="lazy">
+        <img src="assets/img/gallery-1(3).jpg" alt="Sundarbans Mangrove Creek" loading="lazy">
         <div class="gallery-overlay">
           <div class="gallery-cat-tag">Nature</div>
           <div class="gallery-item-title">Sundarbans Mangrove Creek</div>
@@ -531,7 +536,7 @@
 
       <!-- 4 · Festivals · wide -->
       <div class="gallery-item wide gph-4" data-category="festivals" data-title="Durga Puja Pandal Illumination" data-col="#6E3E1E">
-        <img src="assets/img/gallery-4.jpg" alt="Durga Puja Pandal Illumination" loading="lazy">
+        <img src="assets/img/gallery-1(4).jpg" alt="Durga Puja Pandal Illumination" loading="lazy">
         <div class="gallery-overlay">
           <div class="gallery-cat-tag">Festivals</div>
           <div class="gallery-item-title">Durga Puja Pandal Illumination</div>
@@ -541,7 +546,7 @@
 
       <!-- 5 · Cuisine · normal -->
       <div class="gallery-item gph-5" data-category="cuisine" data-title="Street Food — Kathi Roll Maker" data-col="#5C6E2E">
-        <img src="assets/img/gallery-5.jpg" alt="Street Food — Kathi Roll Maker" loading="lazy">
+        <img src="assets/img/gallery-1(5).jpg" alt="Street Food — Kathi Roll Maker" loading="lazy">
         <div class="gallery-overlay">
           <div class="gallery-cat-tag">Cuisine</div>
           <div class="gallery-item-title">Street Food — Kathi Roll Maker</div>
@@ -551,7 +556,7 @@
 
       <!-- 6 · Culture · wide -->
       <div class="gallery-item wide gph-6" data-category="culture" data-title="Baul Folk Singers at Dusk" data-col="#6E4E2E">
-        <img src="assets/img/gallery-6.jpg" alt="Baul Folk Singers at Dusk" loading="lazy">
+        <img src="assets/img/gallery-1(6).jpg" alt="Baul Folk Singers at Dusk" loading="lazy">
         <div class="gallery-overlay">
           <div class="gallery-cat-tag">Culture</div>
           <div class="gallery-item-title">Baul Folk Singers at Dusk</div>
@@ -561,7 +566,7 @@
 
       <!-- 7 · Nature · tall -->
       <div class="gallery-item tall gph-7" data-category="nature" data-title="Bengal River at Golden Hour" data-col="#5E2E6E">
-        <img src="assets/img/gallery-7.jpg" alt="Bengal River at Golden Hour" loading="lazy">
+        <img src="assets/img/gallery-1(7).jpg" alt="Bengal River at Golden Hour" loading="lazy">
         <div class="gallery-overlay">
           <div class="gallery-cat-tag">Nature</div>
           <div class="gallery-item-title">Bengal River at Golden Hour</div>
@@ -571,7 +576,7 @@
 
       <!-- 8 · Rural Life · normal -->
       <div class="gallery-item gph-8" data-category="rural-life" data-title="Artisan Weaving Jamdani" data-col="#7A6E2E">
-        <img src="assets/img/gallery-8.jpg" alt="Artisan Weaving Jamdani" loading="lazy">
+        <img src="assets/img/gallery-1(8).jpg" alt="Artisan Weaving Jamdani" loading="lazy">
         <div class="gallery-overlay">
           <div class="gallery-cat-tag">Rural Life</div>
           <div class="gallery-item-title">Artisan Weaving Jamdani</div>
@@ -581,7 +586,7 @@
 
       <!-- 9 · Heritage · normal -->
       <div class="gallery-item gph-9" data-category="heritage" data-title="Terracotta Temple, Bishnupur" data-col="#2E6E6A">
-        <img src="assets/img/gallery-9.jpg" alt="Terracotta Temple, Bishnupur" loading="lazy">
+        <img src="assets/img/gallery-1(9).jpg" alt="Terracotta Temple, Bishnupur" loading="lazy">
         <div class="gallery-overlay">
           <div class="gallery-cat-tag">Heritage</div>
           <div class="gallery-item-title">Terracotta Temple, Bishnupur</div>
@@ -591,7 +596,7 @@
 
       <!-- 10 · Cuisine · normal -->
       <div class="gallery-item gph-10" data-category="cuisine" data-title="Traditional Thali Spread" data-col="#7A4E2E">
-        <img src="assets/img/gallery-10.jpg" alt="Traditional Thali Spread" loading="lazy">
+        <img src="assets/img/gallery-1(10).jpg" alt="Traditional Thali Spread" loading="lazy">
         <div class="gallery-overlay">
           <div class="gallery-cat-tag">Cuisine</div>
           <div class="gallery-item-title">Traditional Thali Spread</div>
@@ -601,7 +606,7 @@
 
       <!-- 11 · Nature · wide -->
       <div class="gallery-item wide gph-11" data-category="nature" data-title="Mustard Fields in Birbhum" data-col="#3E6E2E">
-        <img src="assets/img/gallery-11.jpg" alt="Mustard Fields in Birbhum" loading="lazy">
+        <img src="assets/img/gallery-1(11).jpg" alt="Mustard Fields in Birbhum" loading="lazy">
         <div class="gallery-overlay">
           <div class="gallery-cat-tag">Nature</div>
           <div class="gallery-item-title">Mustard Fields in Birbhum</div>
@@ -611,7 +616,7 @@
 
       <!-- 12 · Festivals · normal -->
       <div class="gallery-item gph-12" data-category="festivals" data-title="Boat Festival on the Hooghly" data-col="#2E3E7A">
-        <img src="assets/img/gallery-12.jpg" alt="Boat Festival on the Hooghly" loading="lazy">
+        <img src="assets/img/gallery-1(12).jpg" alt="Boat Festival on the Hooghly" loading="lazy">
         <div class="gallery-overlay">
           <div class="gallery-cat-tag">Festivals</div>
           <div class="gallery-item-title">Boat Festival on the Hooghly</div>
@@ -621,7 +626,7 @@
 
       <!-- 13 · Culture · large -->
       <div class="gallery-item large gph-13" data-category="culture" data-title="Patachitra Art — Living Tradition" data-col="#6E2E3E">
-        <img src="assets/img/gallery-13.jpg" alt="Patachitra Art — Living Tradition" loading="lazy">
+        <img src="assets/img/gallery-1(13).jpg" alt="Patachitra Art — Living Tradition" loading="lazy">
         <div class="gallery-overlay">
           <div class="gallery-cat-tag">Culture</div>
           <div class="gallery-item-title">Patachitra Art — Living Tradition</div>
@@ -631,7 +636,7 @@
 
       <!-- 14 · Rural Life · normal -->
       <div class="gallery-item gph-14" data-category="rural-life" data-title="Paddy Harvest Season" data-col="#4E6E2E">
-        <img src="assets/img/gallery-14.jpg" alt="Paddy Harvest Season" loading="lazy">
+        <img src="assets/img/gallery-1(14).jpg" alt="Paddy Harvest Season" loading="lazy">
         <div class="gallery-overlay">
           <div class="gallery-cat-tag">Rural Life</div>
           <div class="gallery-item-title">Paddy Harvest Season</div>
@@ -641,7 +646,7 @@
 
       <!-- 15 · Heritage · tall -->
       <div class="gallery-item tall gph-15" data-category="heritage" data-title="Hazarduari Palace Interior" data-col="#7A5E2E">
-        <img src="assets/img/gallery-15.jpg" alt="Hazarduari Palace Interior" loading="lazy">
+        <img src="assets/img/gallery-1(15).jpg" alt="Hazarduari Palace Interior" loading="lazy">
         <div class="gallery-overlay">
           <div class="gallery-cat-tag">Heritage</div>
           <div class="gallery-item-title">Hazarduari Palace Interior</div>
@@ -651,7 +656,7 @@
 
       <!-- 16 · Cuisine · normal -->
       <div class="gallery-item gph-16" data-category="cuisine" data-title="Clay Pot Cooking in Village Kitchen" data-col="#2E7A5E">
-        <img src="assets/img/gallery-16.jpg" alt="Clay Pot Cooking in Village Kitchen" loading="lazy">
+        <img src="assets/img/gallery-1(16).jpg" alt="Clay Pot Cooking in Village Kitchen" loading="lazy">
         <div class="gallery-overlay">
           <div class="gallery-cat-tag">Cuisine</div>
           <div class="gallery-item-title">Clay Pot Cooking in Village Kitchen</div>
@@ -661,7 +666,7 @@
 
       <!-- 17 · Festivals · normal -->
       <div class="gallery-item gph-17" data-category="festivals" data-title="Evening Ganga Aarti Ceremony" data-col="#7A2E4E">
-        <img src="assets/img/gallery-17.jpg" alt="Evening Ganga Aarti Ceremony" loading="lazy">
+        <img src="assets/img/gallery-1(17).jpg" alt="Evening Ganga Aarti Ceremony" loading="lazy">
         <div class="gallery-overlay">
           <div class="gallery-cat-tag">Festivals</div>
           <div class="gallery-item-title">Evening Ganga Aarti Ceremony</div>
@@ -671,7 +676,7 @@
 
       <!-- 18 · Culture · normal -->
       <div class="gallery-item gph-18" data-category="culture" data-title="Mask Dance of Purulia" data-col="#5E7A2E">
-        <img src="assets/img/gallery-18.jpg" alt="Mask Dance of Purulia" loading="lazy">
+        <img src="assets/img/gallery-1(18).jpg" alt="Mask Dance of Purulia" loading="lazy">
         <div class="gallery-overlay">
           <div class="gallery-cat-tag">Culture</div>
           <div class="gallery-item-title">Mask Dance of Purulia</div>
@@ -752,18 +757,17 @@
   </div>
 </section>
 
-
 <!-- ═══════════════════════
      NEWSLETTER
 ════════════════════════ -->
-<section id="newsletter" class="py-5">
+<section id="newsletter">
   <div class="container">
     <div class="row align-items-center g-4">
-      <div class="col-lg-4" data-aos="fade-right">
+      <div class="col-12" data-aos="fade-down" data-aos-delay="80">
+        <div class="text-center mb-4">
         <h3 class="mb-1">Find How We Work</h3>
         <p class="mb-0">Access our "How we work" guide + subscribe.</p>
-      </div>
-      <div class="col-lg-8" data-aos="fade-left" data-aos-delay="80">
+        </div>
         <div class="d-flex flex-wrap gap-0">
           <input type="text"  class="nl-input flex-fill" placeholder="First Name"     style="min-width:120px"/>
           <input type="text"  class="nl-input flex-fill" placeholder="Last Name"      style="min-width:120px"/>
