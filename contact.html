@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us – Calcutta & Beyond</title>
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <!-- AOS -->
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet"/>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
+
+  <style>
+    /* ═══════════════════════════════════════════
+       TOKENS
+    ═══════════════════════════════════════════ */
+    :root {
+      --orange:      #C8622A;
+      --orange-lt:   #D97A42;
+      --orange-pale: #F2E8DF;
+      --cream:       #F5F0EA;
+      --sage:        #9FAF94;
+      --sage-bg:     #A8BA9D;
+      --dark:        #1A1409;
+      --mid:         #4A4A4A;
+      --light:       #8A8A8A;
+      --white:       #FFFFFF;
+      --font-display: 'Playfair Display', serif;
+      --font-body:    'Lato', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      color: var(--dark);
+      background: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* ═══════════════════════════════════════════
+       TYPOGRAPHY HELPERS
+    ═══════════════════════════════════════════ */
+    .font-display { font-family: var(--font-display); }
+    .eyebrow {
+      font-size: .7rem; font-weight: 700;
+      letter-spacing: .18em; text-transform: uppercase;
+      color: var(--orange); display: block; margin-bottom: .75rem;
+    }
+    .eyebrow::before {
+      content: ''; display: inline-block;
+      width: 24px; height: 1px; background: var(--orange);
+      vertical-align: middle; margin-right: 10px;
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      font-weight: 600; line-height: 1.18; color: var(--dark);
+    }
+    .section-sub { font-size: .97rem; line-height: 1.85; color: var(--mid); }
+    .bg-cream { background: var(--cream) !important; }
+    .py-lg-6  { padding-top: 5rem !important; padding-bottom: 5rem !important; }
+
+    /* ═══════════════════════════════════════════
+       BUTTONS
+    ═══════════════════════════════════════════ */
+    .btn-cb-primary {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: var(--orange); color: var(--white);
+      font-size: .75rem; font-weight: 700; letter-spacing: .08em;
+      text-transform: uppercase; padding: .85rem 1.75rem;
+      border: none; text-decoration: none; cursor: pointer;
+      transition: background .25s, transform .25s;
+    }
+    .btn-cb-primary:hover { background: var(--orange-lt); color: var(--white); transform: translateY(-2px); }
+    .btn-cb-primary svg  { transition: transform .25s; }
+    .btn-cb-primary:hover svg { transform: translateX(4px); }
+
+    /* ═══════════════════════════════════════════
+       NAVBAR
+    ═══════════════════════════════════════════ */
+    #mainNav {
+      background: rgba(255,255,255,.97) !important;
+      box-shadow: 0 2px 24px rgba(0,0,0,.07);
+      padding: .9rem 0;
+      transition: padding .3s;
+    }
+    #mainNav.scrolled { padding: .5rem 0; }
+    #mainNav .navbar-brand img {
+      height: 60px; width: auto; object-fit: contain; margin-right: .75rem;
+    }
+    #mainNav .navbar-brand h4 {
+      font-family: 'Playfair Display', serif;
+      font-optical-sizing: auto;
+      margin: 0; color: var(--dark);
+    }
+    .nav-link {
+      font-size: .82rem; font-weight: 700; letter-spacing: .04em;
+      color: var(--mid) !important; transition: color .2s;
+      padding: .5rem .9rem !important;
+    }
+    .nav-link:hover, .nav-link.active { color: var(--orange) !important; }
+    .navbar-toggler { border: 1.5px solid var(--orange); }
+    .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%23C8622A' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    }
+
+    /* ═══════════════════════════════════════════
+       INNER PAGE BANNER
+    ═══════════════════════════════════════════ */
+    #page-banner {
+      min-height: 480px;
+      position: relative;
+      display: flex; align-items: center;
+      /* Swap gradient for: background-image: url('assets/img/contact-banner.jpg'); */
+      background: linear-gradient(135deg, #1e0e05 0%, #3a2010 35%, #5c3820 60%, #7a5030 100%);
+      background-size: cover; background-position: center;
+      overflow: hidden;
+      padding-top: 80px;
+    }
+    .banner-mesh {
+      position: absolute; inset: 0; pointer-events: none;
+      background:
+        radial-gradient(ellipse 800px 600px at 30% 55%, rgba(200,98,42,.2) 0%, transparent 60%),
+        radial-gradient(ellipse 500px 400px at 80% 75%, rgba(159,175,148,.08) 0%, transparent 55%);
+    }
+    .banner-pattern {
+      position: absolute; inset: 0; pointer-events: none; opacity: .04;
+      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/svg%3E");
+    }
+    .banner-overlay {
+      position: absolute; inset: 0; pointer-events: none;
+      background: linear-gradient(160deg, rgba(20,10,2,.82) 0%, rgba(20,10,2,.55) 50%, rgba(20,10,2,.3) 100%);
+    }
+    .banner-inner { position: relative; z-index: 2; width: 100%; }
+    .banner-eyebrow {
+      font-size: .7rem; font-weight: 700; letter-spacing: .2em;
+      text-transform: uppercase; color: var(--orange-lt);
+      display: flex; align-items: center; justify-content: center; gap: .8rem;
+      margin-bottom: 1rem;
+    }
+    .banner-eyebrow::before,
+    .banner-eyebrow::after {
+      content: ''; width: 28px; height: 1px;
+      background: var(--orange-lt); flex-shrink: 0;
+    }
+    #page-banner h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4.5vw, 3.5rem);
+      font-weight: 600; line-height: 1.12; color: var(--white);
+      margin-bottom: 1rem;
+    }
+    #page-banner h1 em { font-style: italic; color: var(--orange-lt); }
+    .banner-divider {
+      display: block; width: 52px; height: 2px;
+      background: var(--orange); margin: 0 auto 1.25rem;
+    }
+    .banner-breadcrumb .breadcrumb {
+      justify-content: center; margin: 0;
+      background: transparent; padding: 0;
+    }
+    .banner-breadcrumb .breadcrumb-item {
+      font-size: .76rem; font-weight: 600; letter-spacing: .04em;
+    }
+    .banner-breadcrumb .breadcrumb-item a {
+      color: rgba(255,255,255,.58); text-decoration: none; transition: color .2s;
+    }
+    .banner-breadcrumb .breadcrumb-item a:hover { color: var(--orange-lt); }
+    .banner-breadcrumb .breadcrumb-item.active { color: var(--orange-lt); }
+    .banner-breadcrumb .breadcrumb-item + .breadcrumb-item::before {
+      content: '/'; color: rgba(255,255,255,.28); padding: 0 .55rem;
+    }
+
+    /* ═══════════════════════════════════════════
+       CONTACT INFO
+    ═══════════════════════════════════════════ */
+    #contact-main { background: var(--white); }
+
+    .contact-intro-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.5rem, 2.5vw, 2rem);
+      font-weight: 600; line-height: 1.25; color: var(--dark);
+      margin-bottom: .6rem;
+    }
+    .contact-intro-sub {
+      font-size: .9rem; line-height: 1.8; color: var(--mid);
+      margin-bottom: 2rem;
+    }
+
+    .info-item {
+      display: flex; align-items: flex-start; gap: 1.1rem;
+      padding: 1.25rem 0;
+      border-bottom: 1px solid rgba(0,0,0,.07);
+    }
+    .info-item:last-child { border-bottom: none; }
+    .info-icon {
+      width: 46px; height: 46px; flex-shrink: 0; border-radius: 50%;
+      background: var(--orange-pale);
+      border: 1.5px solid rgba(200,98,42,.18);
+      display: flex; align-items: center; justify-content: center;
+      transition: background .25s, border-color .25s;
+    }
+    .info-item:hover .info-icon {
+      background: var(--orange);
+      border-color: var(--orange);
+    }
+    .info-icon svg {
+      width: 19px; height: 19px; stroke: var(--orange);
+      stroke-width: 1.6; fill: none;
+      transition: stroke .25s;
+    }
+    .info-item:hover .info-icon svg { stroke: var(--white); }
+    .info-label {
+      font-size: .68rem; font-weight: 700; letter-spacing: .12em;
+      text-transform: uppercase; color: var(--orange); margin-bottom: .2rem;
+    }
+    .info-text {
+      font-size: .88rem; line-height: 1.65; color: var(--mid); margin: 0;
+    }
+    .info-text a { color: var(--mid); text-decoration: none; transition: color .2s; }
+    .info-text a:hover { color: var(--orange); }
+
+    /* Social strip inside info panel */
+    .contact-socials { display: flex; gap: .6rem; margin-top: 1.75rem; }
+    .c-social-btn {
+      width: 38px; height: 38px;
+      border: 1.5px solid rgba(200,98,42,.25);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--orange); text-decoration: none;
+      font-size: .75rem; font-weight: 700;
+      transition: background .25s, border-color .25s, color .25s;
+    }
+    .c-social-btn:hover {
+      background: var(--orange);
+      border-color: var(--orange);
+      color: var(--white);
+    }
+
+    /* ═══════════════════════════════════════════
+       CONTACT FORM
+    ═══════════════════════════════════════════ */
+    .contact-form-wrap {
+      background: var(--white);
+      border: 1px solid rgba(0,0,0,.09);
+      padding: 2.5rem 2rem;
+      box-shadow: 0 8px 48px rgba(0,0,0,.07);
+    }
+    .form-section-title {
+      font-family: var(--font-display);
+      font-size: 1.4rem; font-weight: 600; color: var(--dark);
+      margin-bottom: .4rem;
+    }
+    .form-section-sub {
+      font-size: .83rem; color: var(--light); margin-bottom: 1.75rem;
+    }
+    .form-label {
+      font-size: .72rem; font-weight: 700; letter-spacing: .07em;
+      text-transform: uppercase; color: var(--mid); margin-bottom: .4rem;
+    }
+    .form-control,
+    .form-select {
+      border: 1px solid rgba(0,0,0,.14); border-radius: 0;
+      padding: .82rem 1rem; font-size: .88rem;
+      font-family: var(--font-body); color: var(--dark);
+      transition: border-color .25s, box-shadow .25s;
+      background-color: var(--white);
+    }
+    .form-control:focus,
+    .form-select:focus {
+      border-color: var(--orange);
+      box-shadow: 0 0 0 3px rgba(200,98,42,.1);
+      outline: none;
+    }
+    .form-control::placeholder { color: rgba(74,74,74,.4); font-size: .85rem; }
+    textarea.form-control { min-height: 148px; resize: vertical; }
+    .form-select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23C8622A' d='M1 1l5 5 5-5'/%3E%3C/svg%3E"); }
+
+    /* Required asterisk */
+    .form-label .req { color: var(--orange); margin-left: 2px; }
+
+    /* Form submit row */
+    .form-note {
+      font-size: .75rem; color: var(--light); margin-top: .75rem;
+    }
+
+    /* ═══════════════════════════════════════════
+       MAP SECTION
+    ═══════════════════════════════════════════ */
+    #map-section { background: var(--cream); }
+    .map-wrap {
+      position: relative; width: 100%; height: 380px;
+      overflow: hidden; background: #d0c8b8;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .map-placeholder {
+      text-align: center; position: relative; z-index: 2;
+    }
+    .map-placeholder-icon {
+      width: 64px; height: 64px; margin: 0 auto 1rem;
+      background: var(--orange);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 8px 28px rgba(200,98,42,.35);
+    }
+    .map-placeholder-icon svg {
+      width: 28px; height: 28px; stroke: var(--white);
+      stroke-width: 1.5; fill: none;
+    }
+    .map-placeholder p {
+      font-family: var(--font-display); font-size: 1.1rem;
+      font-weight: 600; color: var(--dark); margin-bottom: .4rem;
+    }
+    .map-placeholder span { font-size: .82rem; color: var(--mid); }
+    /* Map grid-lines texture */
+    .map-grid {
+      position: absolute; inset: 0; opacity: .18;
+      background-image:
+        linear-gradient(rgba(100,80,50,.4) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(100,80,50,.4) 1px, transparent 1px);
+      background-size: 48px 48px;
+    }
+    .map-grid-accent {
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 60% 60% at 50% 50%, transparent 30%, rgba(200,180,140,.3) 100%);
+    }
+
+    /* ═══════════════════════════════════════════
+       CTA STRIP
+    ═══════════════════════════════════════════ */
+    #cta-strip {
+      position: relative; overflow: hidden;
+      background: linear-gradient(135deg, #2c1a0e 0%, #4a2c1a 50%, #3a2210 100%);
+    }
+    #cta-strip::before {
+      content: ''; position: absolute; inset: 0; pointer-events: none;
+      background: radial-gradient(ellipse 900px 600px at 50% 110%, rgba(200,98,42,.2) 0%, transparent 65%);
+    }
+    .cta-eyebrow {
+      font-size: .7rem; font-weight: 700; letter-spacing: .2em;
+      text-transform: uppercase; color: var(--orange-lt);
+      display: flex; align-items: center; justify-content: center; gap: .8rem;
+      margin-bottom: .75rem;
+    }
+    .cta-eyebrow::before,
+    .cta-eyebrow::after {
+      content: ''; width: 28px; height: 1px; background: var(--orange-lt); flex-shrink: 0;
+    }
+    .cta-strip-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.4rem, 2.5vw, 2.1rem);
+      font-weight: 600; line-height: 1.3; color: var(--white);
+      margin-bottom: .75rem;
+    }
+    .cta-strip-sub { font-size: .9rem; color: rgba(255,255,255,.6); margin-bottom: 1.75rem; }
+
+    /* ═══════════════════════════════════════════
+       NEWSLETTER
+    ═══════════════════════════════════════════ */
+    #newsletter { background: var(--sage-bg); }
+    #newsletter h3 { font-family: var(--font-display); font-size: 1.5rem; color: var(--white); }
+    #newsletter p  { font-size: .88rem; color: rgba(255,255,255,.82); }
+    .nl-input {
+      border: none; border-radius: 0;
+      padding: .85rem 1.1rem; font-size: .85rem;
+      font-family: var(--font-body); outline: none;
+    }
+    .nl-input:focus { box-shadow: none; border: none; outline: none; }
+    .nl-btn {
+      background: var(--orange); color: var(--white);
+      border: none; padding: .85rem 1.5rem; border-radius: 0;
+      font-size: .72rem; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; white-space: nowrap;
+      cursor: pointer; transition: background .25s;
+    }
+    .nl-btn:hover { background: var(--orange-lt); }
+
+    /* ═══════════════════════════════════════════
+       FOOTER
+    ═══════════════════════════════════════════ */
+    footer { background: #120d04; }
+    .footer-brand-text { font-family: var(--font-display); font-size: 15px; color: var(--white); }
+    .footer-brand-text span { color: var(--orange); }
+    .footer-brand-mark {
+      width: 40px; height: 40px; border-radius: 50%;
+      border: 2px solid rgba(255,255,255,.3);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-display); color: rgba(255,255,255,.7); font-size: 14px; flex-shrink: 0;
+    }
+    footer p.brand-sub { font-size: .82rem; color: rgba(255,255,255,.45); line-height: 1.8; }
+    .social-btn {
+      width: 34px; height: 34px; border-radius: 50%;
+      border: 1px solid rgba(255,255,255,.15);
+      display: flex; align-items: center; justify-content: center;
+      color: rgba(255,255,255,.5); text-decoration: none; font-size: .78rem;
+      transition: border-color .2s, color .2s;
+    }
+    .social-btn:hover { border-color: var(--orange); color: var(--orange); }
+    .footer-col-title {
+      font-size: .68rem; font-weight: 700; letter-spacing: .16em;
+      text-transform: uppercase; color: rgba(255,255,255,.3); margin-bottom: 1.25rem;
+    }
+    .footer-link {
+      display: block; font-size: .82rem;
+      color: rgba(255,255,255,.55); text-decoration: none; margin-bottom: .65rem;
+      transition: color .2s;
+    }
+    .footer-link:hover { color: var(--orange-lt); }
+    .footer-contact-item { display: flex; gap: .65rem; margin-bottom: .9rem; }
+    .footer-contact-item svg { flex-shrink: 0; margin-top: 2px; opacity: .55; }
+    .footer-contact-item span { font-size: .82rem; color: rgba(255,255,255,.55); line-height: 1.65; }
+    .footer-divider { border-color: rgba(255,255,255,.07); }
+    .footer-bottom-text { font-size: .75rem; color: rgba(255,255,255,.28); }
+    .footer-bottom-link {
+      color: rgba(255,255,255,.28); text-decoration: none;
+      font-size: .75rem; margin-left: 1rem; transition: color .2s;
+    }
+    .footer-bottom-link:hover { color: var(--orange-lt); }
+
+    /* ═══════════════════════════════════════════
+       RESPONSIVE
+    ═══════════════════════════════════════════ */
+    @media(max-width: 991px) {
+      #page-banner { min-height: 380px; padding-top: 70px; }
+    }
+    @media(max-width: 575px) {
+      #page-banner { min-height: 320px; }
+      .contact-form-wrap { padding: 1.75rem 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════
+     NAVBAR
+════════════════════════ -->
+<nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand text-center align-items-center gap-2" href="index.html">
+      <img src="assets/img/logo.svg" alt="">
+      <h4>Calcutta &amp; Beyond</h4>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto gap-1">
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="experieces.html">Experience</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Destination</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Gallery</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">About Us</a></li>
+        <li class="nav-item"><a class="nav-link active" href="#">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+<!-- ═══════════════════════
+     PAGE BANNER
+════════════════════════ -->
+<section id="page-banner">
+  <div class="banner-mesh"></div>
+  <div class="banner-pattern"></div>
+  <div class="banner-overlay"></div>
+
+  <div class="container banner-inner">
+    <div class="row justify-content-center">
+      <div class="col-lg-8 col-xl-7 text-center" data-aos="fade-up" data-aos-duration="750">
+        <div class="banner-eyebrow">We're Here For You</div>
+        <h1>Contact <em>Us</em></h1>
+        <span class="banner-divider"></span>
+        <nav class="banner-breadcrumb" aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Contact</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════
+     CONTACT MAIN
+════════════════════════ -->
+<section id="contact-main" class="py-5 py-lg-6">
+  <div class="container">
+    <div class="row g-5 align-items-start">
+
+      <!-- LEFT: Contact Info -->
+      <div class="col-lg-5" data-aos="fade-right" data-aos-duration="800">
+        <span class="eyebrow">Get In Touch</span>
+        <h2 class="contact-intro-title">Let's Plan Your<br>Perfect Journey</h2>
+        <p class="contact-intro-sub">
+          Whether you have a question, want to book a trip, or simply want to learn more about Bengal's hidden gems — we're always happy to hear from you. Drop us a message and we'll respond within 24 hours.
+        </p>
+
+        <!-- Info items -->
+        <div class="info-item">
+          <div class="info-icon">
+            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div>
+            <div class="info-label">Our Office</div>
+            <p class="info-text">The address of The Company,<br>Kolkata, West Bengal – 700 001</p>
+          </div>
+        </div>
+
+        <div class="info-item">
+          <div class="info-icon">
+            <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </div>
+          <div>
+            <div class="info-label">Email Us</div>
+            <p class="info-text"><a href="mailto:hello@calcuttabeyond.com">hello@calcuttabeyond.com</a></p>
+          </div>
+        </div>
+
+        <div class="info-item">
+          <div class="info-icon">
+            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.4 2 2 0 0 1 3.58 1.21h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </div>
+          <div>
+            <div class="info-label">Call Us</div>
+            <p class="info-text"><a href="tel:+0000000000">+00 000-000-00</a></p>
+          </div>
+        </div>
+
+        <div class="info-item">
+          <div class="info-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div>
+            <div class="info-label">Office Hours</div>
+            <p class="info-text">Monday – Saturday: 9:00 AM – 6:00 PM IST<br>Sunday: Closed</p>
+          </div>
+        </div>
+
+        <!-- Social links -->
+        <div class="contact-socials mt-2">
+          <a href="#" class="c-social-btn" title="Facebook">f</a>
+          <a href="#" class="c-social-btn" title="LinkedIn">in</a>
+          <a href="#" class="c-social-btn" title="Instagram">ig</a>
+          <a href="#" class="c-social-btn" title="YouTube">yt</a>
+        </div>
+      </div><!-- /col-left -->
+
+      <!-- RIGHT: Contact Form -->
+      <div class="col-lg-7" data-aos="fade-left" data-aos-duration="800" data-aos-delay="80">
+        <div class="contact-form-wrap">
+          <h3 class="form-section-title">Send Us a Message</h3>
+          <p class="form-section-sub">Fill in the form below and our team will get back to you shortly.</p>
+
+          <form id="contactForm" novalidate>
+            <div class="row g-3">
+
+              <!-- Name -->
+              <div class="col-sm-6">
+                <label class="form-label" for="fullName">
+                  Full Name <span class="req">*</span>
+                </label>
+                <input type="text" id="fullName" name="fullName"
+                       class="form-control" placeholder="Your full name" required>
+              </div>
+
+              <!-- Email -->
+              <div class="col-sm-6">
+                <label class="form-label" for="emailAddr">
+                  Email Address <span class="req">*</span>
+                </label>
+                <input type="email" id="emailAddr" name="emailAddr"
+                       class="form-control" placeholder="your@email.com" required>
+              </div>
+
+              <!-- Phone -->
+              <div class="col-sm-6">
+                <label class="form-label" for="phoneNum">Phone Number</label>
+                <input type="tel" id="phoneNum" name="phoneNum"
+                       class="form-control" placeholder="+00 000 000 0000">
+              </div>
+
+              <!-- Subject -->
+              <div class="col-sm-6">
+                <label class="form-label" for="subject">
+                  Subject <span class="req">*</span>
+                </label>
+                <select id="subject" name="subject" class="form-select" required>
+                  <option value="" disabled selected>Select a topic…</option>
+                  <option value="book-trip">Book a Trip</option>
+                  <option value="custom">Custom Itinerary Request</option>
+                  <option value="group">Group &amp; Family Travel</option>
+                  <option value="wedding">Destination Wedding</option>
+                  <option value="partnership">Partnership / Collaboration</option>
+                  <option value="press">Press &amp; Media</option>
+                  <option value="general">General Enquiry</option>
+                </select>
+              </div>
+
+              <!-- Travel Dates (optional) -->
+              <div class="col-sm-6">
+                <label class="form-label" for="travelDate">Preferred Travel Date</label>
+                <input type="date" id="travelDate" name="travelDate" class="form-control">
+              </div>
+
+              <!-- No. of travellers -->
+              <div class="col-sm-6">
+                <label class="form-label" for="travellers">Number of Travellers</label>
+                <select id="travellers" name="travellers" class="form-select">
+                  <option value="" disabled selected>Select…</option>
+                  <option>1 (Solo)</option>
+                  <option>2</option>
+                  <option>3 – 5</option>
+                  <option>6 – 10</option>
+                  <option>11 – 20</option>
+                  <option>20+</option>
+                </select>
+              </div>
+
+              <!-- Message -->
+              <div class="col-12">
+                <label class="form-label" for="message">
+                  Your Message <span class="req">*</span>
+                </label>
+                <textarea id="message" name="message" class="form-control"
+                          placeholder="Tell us about your dream trip — where you'd like to go, what excites you, and any special requirements…"
+                          required></textarea>
+              </div>
+
+              <!-- Submit -->
+              <div class="col-12 d-flex align-items-center gap-3 flex-wrap mt-2">
+                <button type="submit" class="btn-cb-primary">
+                  Send Message
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                </button>
+                <p class="form-note mb-0">We respond within 24 hours.</p>
+              </div>
+
+            </div><!-- /row -->
+          </form><!-- /form -->
+
+        </div><!-- /contact-form-wrap -->
+      </div><!-- /col-right -->
+
+    </div><!-- /row -->
+  </div><!-- /container -->
+</section>
+
+
+<!-- ═══════════════════════
+     MAP SECTION
+════════════════════════ -->
+<section id="map-section" class="py-5 py-lg-6 bg-cream">
+  <div class="container">
+    <div class="row justify-content-center mb-4" data-aos="fade-up">
+      <div class="col-lg-7 text-center">
+        <span class="eyebrow" style="display:flex;align-items:center;justify-content:center;gap:.5rem;">
+          <span style="width:24px;height:1px;background:var(--orange);display:inline-block"></span>
+          Find Us
+          <span style="width:24px;height:1px;background:var(--orange);display:inline-block"></span>
+        </span>
+        <h2 class="section-title">Visit Our Office</h2>
+        <p class="section-sub mt-2">
+          Nestled in the heart of Kolkata, our office is your starting point for an unforgettable Bengal journey.
+        </p>
+      </div>
+    </div>
+    <div class="map-wrap" data-aos="fade-up" data-aos-delay="80">
+      <!-- Replace with Google Maps iframe when available:
+           <iframe src="https://maps.google.com/..." width="100%" height="380" style="border:0" allowfullscreen loading="lazy"></iframe>
+      -->
+      <div class="map-grid"></div>
+      <div class="map-grid-accent"></div>
+      <div class="map-placeholder">
+        <div class="map-placeholder-icon">
+          <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <p>Calcutta &amp; Beyond HQ</p>
+        <span>Kolkata, West Bengal, India</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════
+     CTA STRIP
+════════════════════════ -->
+<section id="cta-strip" class="py-5 py-lg-6 text-center position-relative">
+  <div class="container position-relative" style="z-index:1">
+    <div class="cta-eyebrow" data-aos="fade-up">Start Your Journey</div>
+    <h2 class="cta-strip-title mx-auto" style="max-width:640px" data-aos="fade-up" data-aos-delay="60">
+      The Best Travel Experiences Are Planned by Someone Who Actually Knows You.
+    </h2>
+    <p class="cta-strip-sub mx-auto" style="max-width:500px" data-aos="fade-up" data-aos-delay="120">
+      Let's have a conversation. Tell us who you are, what moves you, and when you want to go — we'll take care of everything else.
+    </p>
+    <div class="d-flex flex-wrap gap-3 justify-content-center" data-aos="fade-up" data-aos-delay="180">
+      <a href="experieces.html" class="btn-cb-primary">
+        Explore Experiences
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+      <a href="#contactForm" class="btn-cb-primary" style="background:transparent;border:1.5px solid rgba(255,255,255,.4);">
+        Send Us a Message
+      </a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════
+     NEWSLETTER
+════════════════════════ -->
+<section id="newsletter" class="py-5">
+  <div class="container">
+    <div class="row align-items-center g-4">
+      <div class="col-lg-4" data-aos="fade-right">
+        <h3 class="mb-1">Find How We Work</h3>
+        <p class="mb-0">Access our "How we work" guide + subscribe.</p>
+      </div>
+      <div class="col-lg-8" data-aos="fade-left" data-aos-delay="80">
+        <div class="d-flex flex-wrap gap-0">
+          <input type="text"  class="nl-input flex-fill" placeholder="First Name"     style="min-width:120px"/>
+          <input type="text"  class="nl-input flex-fill" placeholder="Last Name"      style="min-width:120px"/>
+          <input type="email" class="nl-input flex-fill" placeholder="E-mail Address" style="min-width:180px"/>
+          <button class="nl-btn">Subscribe</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════
+     FOOTER
+════════════════════════ -->
+<footer class="py-5">
+  <div class="container">
+    <div class="row g-5">
+      <div class="col-lg-3 col-md-6">
+        <div class="d-flex align-items-center gap-2 mb-3">
+          <div class="footer-brand-mark">cb</div>
+          <div class="footer-brand-text">Calcutta <span>&</span> Beyond</div>
+        </div>
+        <p class="brand-sub">A platform for sustainable rural tourism, connecting travellers with the authentic heart of Bengal.</p>
+        <div class="d-flex gap-2 mt-3">
+          <a href="#" class="social-btn">f</a>
+          <a href="#" class="social-btn">in</a>
+          <a href="#" class="social-btn">ig</a>
+          <a href="#" class="social-btn">yt</a>
+        </div>
+      </div>
+      <div class="col-lg-2 col-md-6 col-6">
+        <div class="footer-col-title">Experiences</div>
+        <a href="#" class="footer-link">Solo Adventures</a>
+        <a href="#" class="footer-link">Family &amp; Groups</a>
+        <a href="#" class="footer-link">Destination Weddings</a>
+        <a href="#" class="footer-link">Local Life</a>
+        <a href="#" class="footer-link">Corporate Retreats</a>
+      </div>
+      <div class="col-lg-2 col-md-6 col-6">
+        <div class="footer-col-title">Company</div>
+        <a href="#" class="footer-link">About Us</a>
+        <a href="#" class="footer-link">How We Work</a>
+        <a href="#" class="footer-link">Sustainability</a>
+        <a href="#" class="footer-link">Gallery</a>
+        <a href="#" class="footer-link">Blog</a>
+        <a href="contact.html" class="footer-link">Contact</a>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <div class="footer-col-title">Contact</div>
+        <div class="footer-contact-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.6)" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>The address of The Company,<br>Kolkata, West Bengal</span>
+        </div>
+        <div class="footer-contact-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.6)" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          <span>hello@calcuttabeyond.com</span>
+        </div>
+        <div class="footer-contact-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.6)" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.4 2 2 0 0 1 3.58 1.21h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <span>+00 000-000-00</span>
+        </div>
+      </div>
+    </div>
+    <hr class="footer-divider mt-5 mb-4"/>
+    <div class="d-flex flex-wrap justify-content-between align-items-center gap-3">
+      <p class="footer-bottom-text mb-0">© 2025 Calcutta &amp; Beyond. All rights reserved.</p>
+      <div>
+        <a href="#" class="footer-bottom-link">Privacy</a>
+        <a href="#" class="footer-bottom-link">Terms</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<!-- ═══════════════════════
+     SCRIPTS
+════════════════════════ -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+
+<script>
+/* ─── AOS ─────────────────── */
+AOS.init({ once: true, duration: 700, easing: 'ease-out-cubic' });
+
+/* ─── Sticky nav shrink ───── */
+window.addEventListener('scroll', () => {
+  document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 60);
+});
+
+/* ─── Form submit handler ─── */
+document.getElementById('contactForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const btn   = this.querySelector('button[type="submit"]');
+  const orig  = btn.innerHTML;
+
+  /* Basic validation */
+  if (!this.checkValidity()) {
+    this.classList.add('was-validated');
+    return;
+  }
+
+  /* Simulated send feedback */
+  btn.innerHTML = 'Sending… <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>';
+  btn.disabled = true;
+
+  setTimeout(() => {
+    btn.innerHTML = 'Message Sent! ✓';
+    btn.style.background = '#4a7a4a';
+    setTimeout(() => {
+      btn.innerHTML = orig;
+      btn.disabled  = false;
+      btn.style.background = '';
+      this.reset();
+      this.classList.remove('was-validated');
+    }, 3000);
+  }, 1200);
+});
+</script>
+</body>
+</html>
